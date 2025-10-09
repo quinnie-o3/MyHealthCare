@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyHealthCare</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"> <!-- TÊN LOGO Ở GÓC TRÁI -->
+                <span class="logo-my">My</span>
+                <span class="logo-health">Health</span>
+                <span class="logo-care">Care</span>
+                <span class="logo-plus">+</span>
+            </div>
+    <nav class="toolbar">
+      <a class="HOME_BUTT" href="#home">Home</a>
+      <a class="HOME_BUTT" href="#about">About us</a>
+
+      <div class="dropdown">
+        <span class="HOME_BUTT">Services</span>
+        <div class="dropdown-content">
+          <a href="#medical">Medical</a>
+          <a href="#booking">Booking</a>
+        </div>
+      </div>
+    </nav>
+            
+             <!----------SEARCH BAR--------------->
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+                <button>🔍</button>
+            </div>
+            
+            <div class="auth-buttons">
+                <button class="btn-login">Log in</button>
+                <button class="btn-signup">Sign up</button>
+            </div>
+        </header>
+
+        <div class="carousel">
+            <div class="carousel-inner">
+                <!-- Slide 1 - Compassionate Care -->
+                <div class="carousel-slide active" style="background-image: url('img/slide1.jpg');">
+                    <div class="slide-content">
+                        <div class="slide-logo">
+                            <span class="slide-logo-my">My</span>
+                            <span class="slide-logo-health">Health</span>
+                            <span class="slide-logo-care">Care</span>
+                            <span class="slide-logo-plus">+</span>
+                        </div>
+                        <div class="slide-text">
+                            Where compassion meets medical excellence.<br>
+                            We care for your health with dedication, empathy, and trust.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 - Modern Facilities -->
+                <div class="carousel-slide" style="background-image: url('img/slide2.jpg');">
+                    <div class="slide-content">
+                        <div class="slide-logo">
+                            <span class="slide-logo-my">My</span>
+                            <span class="slide-logo-health">Health</span>
+                            <span class="slide-logo-care">Care</span>
+                            <span class="slide-logo-plus">+</span>
+                        </div>
+                        <div class="slide-text">
+                            State-of-the-art facilities for comprehensive care.<br>
+                            Modern equipment, comfortable environment, expert staff.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 - Your Trusted Partner -->
+                <div class="carousel-slide" style="background-image: url('img/slide3.jpg');">
+                    <div class="slide-content">
+                        <div class="slide-logo">
+                            <span class="slide-logo-my">My</span>
+                            <span class="slide-logo-health">Health</span>
+                            <span class="slide-logo-care">Care</span>
+                            <span class="slide-logo-plus">+</span>
+                        </div>
+                        <div class="slide-text">
+                            Your Trusted Partner in Health and Wellness<br>
+                            Building healthier communities, one family at a time.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <button class="carousel-control carousel-control-prev" onclick="changeSlide(-1)">‹</button>
+            <button class="carousel-control carousel-control-next" onclick="changeSlide(1)">›</button>
+
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+                <button class="indicator active" onclick="goToSlide(0)"></button>
+                <button class="indicator" onclick="goToSlide(1)"></button>
+                <button class="indicator" onclick="goToSlide(2)"></button>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <section class="services">
+            <h2>Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <img src="img/service1.jpg" alt="General Health Checkup">
+                    <h3>General Health Check & Cancer Screening</h3>
+                    <a href="#" class="btn-detail">View Details</a>
+                </div>
+                <div class="service-card">
+                    <img src="img/service2.jpg" alt="Advanced Health Checkup">
+                    <h3>Advanced Health Checkup</h3>
+                    <a href="#" class="btn-detail">View Details</a>
+                </div>
+                <div class="service-card">
+                    <img src="img/service3.jpg" alt="Basic Health Checkup">
+                    <h3>Basic Health Checkup</h3>
+                    <a href="#" class="btn-detail">View Details</a>
+                </div>
+                <div class="service-card">
+                    <img src="img/service4.jpg" alt="Specialized Health Checkup">
+                    <h3>Specialized Health Checkup</h3>
+                    <a href="#" class="btn-detail">View Details</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Specialties Section -->
+        <section class="specialties">
+            <h2>Specialties</h2>
+            <ul class="specialty-list">
+                <li>
+                    <img src="img/specialty1.jpg" alt="Imaging Diagnosis">
+                    <div>
+                        <h3>Imaging Diagnosis</h3>
+                        <a href="#">Read more</a>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/specialty2.jpg" alt="Bone & Joint">
+                    <div>
+                        <h3>Bone & Joint</h3>
+                        <a href="#">Read more</a>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/specialty3.jpg" alt="Pediatrics">
+                    <div>
+                        <h3>Pediatrics</h3>
+                        <a href="#">Read more</a>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/specialty4.jpg" alt="Obstetrics & Gynecology">
+                    <div>
+                        <h3>Obstetrics & Gynecology</h3>
+                        <a href="#">Read more</a>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/specialty5.jpg" alt="ENT - Audiology">
+                    <div>
+                        <h3>ENT - Audiology</h3>
+                        <a href="#">Read more</a>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
