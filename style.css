@@ -1,3 +1,4 @@
+/* RESET + BASE STYLE */
 * {
     margin: 0;
     padding: 0;
@@ -15,16 +16,20 @@ body {
     padding: 20px;
 }
 
-/* Header */
+/* HEADER */
 header {
     background: white;
-    border-radius: 50px;
     padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     margin-bottom: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
 }
 
 .logo {
@@ -35,49 +40,39 @@ header {
     gap: 5px;
 }
 
-.logo-my {
-    color: #000;
-}
-
-.logo-health {
-    color: #3b82f6;
-}
-
-.logo-care {
-    color: #000;
-}
-
+.logo-my { color: #000; }
+.logo-health { color: #3b82f6; }
+.logo-care { color: #000; }
 .logo-plus {
     color: #3b82f6;
     font-size: 40px;
     margin-left: -5px;
 }
 
+/* NAVIGATION */
 nav {
     display: flex;
     gap: 40px;
     align-items: center;
 }
 
-nav a {
+/* NAV LINKS */
+nav a, .dropdown {
     text-decoration: none;
-    color: #333;
     font-size: 18px;
     font-weight: 500;
     transition: color 0.3s;
+    cursor: pointer;
 }
 
-nav a:hover {
-    color: #3b82f6;
+nav a:hover, .dropdown:hover {
+    color: #112bad;
 }
 
+/* DROPDOWN */
 .dropdown {
     position: relative;
     display: inline-block;
-    cursor: pointer;
-    color: #333;
-    font-size: 18px;
-    font-weight: 500;
 }
 
 .dropdown::after {
@@ -86,22 +81,52 @@ nav a:hover {
     margin-left: 5px;
 }
 
-/* Search Box */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 1001;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: black;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(14, 92, 181, 0.2);
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* SEARCH BOX */
 .search-box {
     display: flex;
     align-items: center;
     gap: 5px;
-    background: #f5f5f5;
+    background: #FFF;
     padding: 8px 15px;
     border-radius: 25px;
 }
 
 .search-box input {
-    border: none;
+    border: 1px solid #ccc;
     background: transparent;
     outline: none;
     font-size: 16px;
     width: 150px;
+    padding: 6px 10px;
+    border-radius: 10px;
 }
 
 .search-box button {
@@ -111,49 +136,65 @@ nav a:hover {
     font-size: 18px;
 }
 
+/* AUTH BUTTONS */
 .auth-buttons {
     display: flex;
     gap: 20px;
     align-items: center;
 }
 
-.btn-login {
+.login {
+    color: #000;
     background: none;
     border: none;
-    color: #333;
     font-size: 18px;
     font-weight: 500;
     cursor: pointer;
     transition: color 0.3s;
+    text-decoration: none;
 }
 
-.btn-login:hover {
-    color: #3b82f6;
-}
-
-.btn-signup {
+.signup {
     background: #3b82f6;
     color: white;
     border: none;
-    padding: 12px 32px;
+    padding: 8px 20px;
     border-radius: 8px;
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
 }
 
-.btn-signup:hover {
-    background: #2563eb;
+.signup:hover {
+    background: #193bd7;
+    transform: scale(1.05);
 }
 
-/* Carousel */
+/* HOME BUTTON (custom toolbar style) */
+.HOME_BUTT {
+    padding: 10px 16px;
+    border-radius: 18px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    cursor: pointer;
+}
+
+.HOME_BUTT:hover {
+    background: rgb(5, 28, 236);
+    color: white;
+}
+
+/* CAROUSEL */
 .carousel {
     position: relative;
-    background: white;
-    border-radius: 12px;
+    width: 100vw;            /* Chiếm toàn bộ chiều ngang màn hình */
+    height: 100vh;           /* Chiếm toàn bộ chiều cao màn hình */
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 0;        /* Xóa bo góc nếu muốn tràn sát màn hình */
+    background: none;
 }
 
 .carousel-inner {
@@ -163,7 +204,7 @@ nav a:hover {
 }
 
 .carousel-slide {
-    position: absolute;
+    position: RELATIVE;
     top: 0;
     left: 0;
     width: 100%;
@@ -179,9 +220,7 @@ nav a:hover {
     text-align: center;
 }
 
-.carousel-slide.active {
-    opacity: 1;
-}
+.carousel-slide.active { opacity: 1; }
 
 .carousel-slide::before {
     content: '';
@@ -190,7 +229,7 @@ nav a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.35);
 }
 
 .slide-content {
@@ -202,7 +241,7 @@ nav a:hover {
 
 .slide-logo {
     font-size: 72px;
-    font-weight: BOLD;
+    font-weight: bold;
     margin-bottom: 40px;
     display: flex;
     justify-content: center;
@@ -210,18 +249,9 @@ nav a:hover {
     gap: 8px;
 }
 
-.slide-logo-my {
-    color: #000;
-}
-
-.slide-logo-health {
-    color: #3b82f6;
-}
-
-.slide-logo-care {
-    color: #000;
-}
-
+.slide-logo-my { color: #000; }
+.slide-logo-health { color: #3b82f6; }
+.slide-logo-care { color: #000; }
 .slide-logo-plus {
     color: #3b82f6;
     font-size: 80px;
@@ -235,7 +265,7 @@ nav a:hover {
     font-weight: 500;
 }
 
-/* Carousel Controls */
+/* CAROUSEL CONTROLS */
 .carousel-control {
     position: absolute;
     top: 50%;
@@ -244,7 +274,6 @@ nav a:hover {
     border: none;
     width: 50px;
     height: 50px;
-    border-radius: 50%;
     cursor: pointer;
     font-size: 24px;
     display: flex;
@@ -252,28 +281,26 @@ nav a:hover {
     justify-content: center;
     z-index: 10;
     transition: all 0.3s;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .carousel-control:hover {
-    background: rgba(255, 255, 255, 1);
-    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.15), inset 0 -2px 4px rgba(0, 0, 0, 0.08);
+    background: TRANSPARENT;
+    /*box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.15),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.08); */
 }
 
 .carousel-control:active {
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2), inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.1);
     transform: translateY(-50%) scale(0.95);
 }
 
-.carousel-control-prev {
-    left: 30px;
-}
+.carousel-control-prev { left: 30px; }
+.carousel-control-next { right: 30px; }
 
-.carousel-control-next {
-    right: 30px;
-}
-
-/* Carousel Indicators */
+/* CAROUSEL INDICATORS */
 .carousel-indicators {
     position: absolute;
     bottom: 30px;
@@ -298,7 +325,7 @@ nav a:hover {
     background: #1f2937;
 }
 
-/* Services Section */
+/* SERVICES SECTION */
 .services {
     margin-top: 60px;
     padding: 40px 0;
@@ -360,7 +387,7 @@ nav a:hover {
     background: #2563eb;
 }
 
-/* Specialties Section */
+/* SPECIALTIES SECTION */
 .specialties {
     margin-top: 60px;
     padding: 40px 0;
@@ -420,105 +447,4 @@ nav a:hover {
 .specialty-list a:hover {
     color: #2563eb;
     text-decoration: underline;
-}
-
-/* Đổi màu nút ở thanh công cụ */
-.container header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px 30px;
-  background-color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-}
-
-.toolbar {
-  display: flex;
-  gap: 12px;
-}
-
-.HOME_BUTT {
-  padding: 10px 16px;
-  background: rgba(14, 92, 181, 0.2);
-  border-radius: 15px;
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-  transition: background 0.3s ease;
-  cursor: pointer;
-}
-
-.HOME_BUTT:hover {
-  background: rgba(14, 92, 181, 0.6);
-  color: white;
-}
-
-.dropdown {
-  position: relative;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: white;
-  min-width: 120px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-  border-radius: 10px;
-  overflow: hidden;
-  z-index: 1001;
-}
-
-.dropdown-content a {
-  display: block;
-  padding: 10px 12px;
-  text-decoration: none;
-  color: black;
-}
-
-.dropdown-content a:hover {
-  background-color: rgba(14, 92, 181, 0.2);
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.search-box {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.search-box input {
-  padding: 6px 10px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-}
-
-.auth-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.btn-login,
-.btn-signup {
-  padding: 8px 14px;
-  border-radius: 10px;
-  border: none;
-  background-color: rgba(14, 92, 181, 0.2);
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.btn-login:hover,
-.btn-signup:hover {
-  background-color: rgba(14, 92, 181, 0.6);
-  color: white;
 }
