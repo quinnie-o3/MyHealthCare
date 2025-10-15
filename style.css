@@ -8,15 +8,25 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background: #f5f5f5;
+    /* Đảm bảo không có thanh cuộn ngang khi header fixed 100vw */
+    overflow-x: hidden; 
 }
 
+/* Lớp bọc chính, giữ chiều rộng tối đa và căn giữa */
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px;
+    /* Đã xóa padding 20px ở đây vì header và carousel đã tràn hết chiều rộng */
 }
 
-/* HEADER */
+/* Thêm khoảng đệm cho nội dung chính để không bị che bởi header fixed */
+.main-content-wrapper {
+    padding-top: 100px; /* Điều chỉnh dựa trên chiều cao thực tế của header */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* HEADER - Giữ nguyên fixed và tràn màn hình */
 header {
     background: white;
     padding: 20px 40px;
@@ -24,12 +34,12 @@ header {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
+    height: 80px; /* Đặt chiều cao cố định cho header */
 }
 
 .logo {
@@ -42,31 +52,33 @@ header {
 
 .logo-my { color: #000; }
 .logo-health { color: #3b82f6; }
-.logo-care { color: #000; }
 .logo-plus {
     color: #3b82f6;
     font-size: 40px;
     margin-left: -5px;
 }
 
-/* NAVIGATION */
+/* NAVIGATION - Đã loại bỏ .HOME_BUTT và áp dụng style cho a và span trực tiếp */
 nav {
     display: flex;
-    gap: 40px;
+    gap: 20px; /* Giảm khoảng cách giữa các mục nav */
     align-items: center;
 }
 
-/* NAV LINKS */
-nav a, .dropdown {
+nav a, nav .dropdown span {
     text-decoration: none;
     font-size: 18px;
-    font-weight: 500;
-    transition: color 0.3s;
+    font-weight: 600; /* Tăng font-weight để nổi bật hơn */
+    color: black; /* Màu mặc định */
+    transition: all 0.3s;
     cursor: pointer;
+    padding: 10px 16px;
+    border-radius: 18px;
 }
 
-nav a:hover, .dropdown:hover {
-    color: #112bad;
+nav a:hover, nav .dropdown span:hover {
+    color: white;
+    background: #2563eb; /* Thay đổi màu nền khi hover */
 }
 
 /* DROPDOWN */
@@ -77,8 +89,13 @@ nav a:hover, .dropdown:hover {
 
 .dropdown::after {
     content: '▼';
-    font-size: 12px;
+    font-size: 10px;
     margin-left: 5px;
+    transition: transform 0.3s;
+}
+
+.dropdown:hover::after {
+    transform: rotate(180deg);
 }
 
 .dropdown-content {
@@ -87,22 +104,26 @@ nav a:hover, .dropdown:hover {
     top: 100%;
     left: 0;
     background-color: white;
-    min-width: 120px;
+    min-width: 150px;
     box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
     border-radius: 10px;
     overflow: hidden;
     z-index: 1001;
+    margin-top: 5px;
 }
 
 .dropdown-content a {
+    /* Đã xóa padding và border-radius từ nav link để style lại cho menu item */
+    padding: 10px 15px;
     display: block;
-    padding: 10px 12px;
     text-decoration: none;
     color: black;
+    font-weight: 500;
 }
 
 .dropdown-content a:hover {
-    background-color: rgba(14, 92, 181, 0.2);
+    background-color: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
 }
 
 .dropdown:hover .dropdown-content {
@@ -117,16 +138,17 @@ nav a:hover, .dropdown:hover {
     background: #FFF;
     padding: 8px 15px;
     border-radius: 25px;
+    border: 1px solid #ddd;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .search-box input {
-    border: 1px solid #ccc;
+    border: none; /* Đã loại bỏ border ở input */
     background: transparent;
     outline: none;
     font-size: 16px;
     width: 150px;
-    padding: 6px 10px;
-    border-radius: 10px;
+    padding: 0;
 }
 
 .search-box button {
@@ -134,32 +156,37 @@ nav a:hover, .dropdown:hover {
     border: none;
     cursor: pointer;
     font-size: 18px;
+    color: #3b82f6;
 }
 
 /* AUTH BUTTONS */
 .auth-buttons {
     display: flex;
-    gap: 20px;
+    gap: 15px; /* Giảm khoảng cách */
     align-items: center;
 }
 
 .login {
-    color: #000;
+    color: #3b82f6; /* Đổi màu login thành màu chủ đạo */
     background: none;
     border: none;
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
     transition: color 0.3s;
     text-decoration: none;
+}
+
+.login:hover {
+    color: #112bad;
 }
 
 .signup {
     background: #3b82f6;
     color: white;
     border: none;
-    padding: 8px 20px;
-    border-radius: 8px;
+    padding: 10px 24px; /* Tăng padding */
+    border-radius: 20px; /* Bo tròn hơn */
     font-size: 18px;
     font-weight: 600;
     cursor: pointer;
@@ -167,50 +194,34 @@ nav a:hover, .dropdown:hover {
 }
 
 .signup:hover {
-    background: #193bd7;
+    background: #2563eb;
     transform: scale(1.05);
 }
 
-/* HOME BUTTON (custom toolbar style) */
-.HOME_BUTT {
-    padding: 10px 16px;
-    border-radius: 18px;
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    transition: background 0.3s ease;
-    cursor: pointer;
-}
-
-.HOME_BUTT:hover {
-    background: rgb(5, 28, 236);
-    color: white;
-}
-
-/* CAROUSEL */
+/* CAROUSEL - Tối ưu hóa chiều cao */
 .carousel {
     position: relative;
-    width: 100vw;            /* Chiếm toàn bộ chiều ngang màn hình */
-    height: 100vh;           /* Chiếm toàn bộ chiều cao màn hình */
+    /* Đã thay đổi từ 100vw sang 100% để nằm trong .container */
+    width: 100%; 
+    height: 550px; /* Giảm chiều cao cho desktop */
     overflow: hidden;
-    border-radius: 0;        /* Xóa bo góc nếu muốn tràn sát màn hình */
-    background: none;
+    margin: 0 auto; /* Căn giữa */
 }
 
 .carousel-inner {
     position: relative;
     width: 100%;
-    height: 600px;
+    height: 100%; /* Chiếm toàn bộ chiều cao của .carousel */
 }
 
 .carousel-slide {
-    position: RELATIVE;
+    position: absolute; /* Đã đổi từ RELATIVE sang absolute để slide chồng lên nhau */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.7s ease-in-out;
     background-size: cover;
     background-position: center;
     display: flex;
@@ -229,7 +240,8 @@ nav a:hover, .dropdown:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.35);
+    /* Giảm độ tối cho slide */
+    background: rgba(0, 0, 0, 0.2); 
 }
 
 .slide-content {
@@ -237,32 +249,35 @@ nav a:hover, .dropdown:hover {
     z-index: 2;
     padding: 40px;
     max-width: 1000px;
+    /* Đổi màu chữ slide thành trắng cho dễ đọc trên nền tối */
+    color: white; 
 }
 
 .slide-logo {
     font-size: 72px;
     font-weight: bold;
-    margin-bottom: 40px;
+    margin-bottom: 30px; /* Giảm margin */
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 8px;
 }
 
-.slide-logo-my { color: #000; }
+.slide-logo-my { color: white; } /* Đổi màu chữ logo trong slide */
 .slide-logo-health { color: #3b82f6; }
-.slide-logo-care { color: #000; }
+.slide-logo-care { color: white; }
 .slide-logo-plus {
     color: #3b82f6;
     font-size: 80px;
 }
 
 .slide-text {
-    font-size: 32px;
-    line-height: 1.6;
-    color: #1f2937;
+    font-size: 28px; /* Giảm kích thước chữ */
+    line-height: 1.5;
+    /* color: #1f2937; -> Đã đổi thành white ở .slide-content */
     font-style: italic;
-    font-weight: 500;
+    font-weight: 400; /* Giảm độ đậm */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.5); /* Thêm shadow để dễ đọc hơn */
 }
 
 /* CAROUSEL CONTROLS */
@@ -270,10 +285,12 @@ nav a:hover, .dropdown:hover {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.5); /* Giảm độ trong suốt */
+    color: #1f2937;
     border: none;
-    width: 50px;
-    height: 50px;
+    width: 40px; /* Giảm kích thước */
+    height: 40px;
+    border-radius: 50%; /* Bo tròn hoàn toàn */
     cursor: pointer;
     font-size: 24px;
     display: flex;
@@ -281,20 +298,11 @@ nav a:hover, .dropdown:hover {
     justify-content: center;
     z-index: 10;
     transition: all 0.3s;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1),
-                inset 0 -2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .carousel-control:hover {
-    background: TRANSPARENT;
-    /*box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.15),
-                inset 0 -2px 4px rgba(0, 0, 0, 0.08); */
-}
-
-.carousel-control:active {
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2),
-                inset 0 -1px 2px rgba(0, 0, 0, 0.1);
-    transform: translateY(-50%) scale(0.95);
+    background: rgba(255, 255, 255, 0.8);
+    transform: translateY(-50%) scale(1.1);
 }
 
 .carousel-control-prev { left: 30px; }
@@ -303,26 +311,27 @@ nav a:hover, .dropdown:hover {
 /* CAROUSEL INDICATORS */
 .carousel-indicators {
     position: absolute;
-    bottom: 30px;
+    bottom: 20px; /* Đẩy lên trên một chút */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 12px;
+    gap: 10px;
     z-index: 10;
 }
 
 .indicator {
-    width: 12px;
-    height: 12px;
+    width: 10px; /* Giảm kích thước */
+    height: 10px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    border: none;
+    background: rgba(255, 255, 255, 0.7);
+    border: 2px solid transparent;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s;
 }
 
 .indicator.active {
-    background: #1f2937;
+    background: #3b82f6; /* Màu chủ đạo khi active */
+    border: 2px solid white;
 }
 
 /* SERVICES SECTION */
@@ -336,11 +345,13 @@ nav a:hover, .dropdown:hover {
     text-align: center;
     margin-bottom: 40px;
     color: #1f2937;
+    font-weight: 700;
 }
 
 .service-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    /* Dùng repeat(auto-fit, minmax) để responsive tốt hơn */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
     gap: 30px;
 }
 
@@ -348,18 +359,18 @@ nav a:hover, .dropdown:hover {
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* Shadow nhẹ hơn */
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transform: translateY(-8px); /* Nhảy cao hơn một chút */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .service-card img {
     width: 100%;
-    height: 200px;
+    height: 180px; /* Giảm chiều cao ảnh dịch vụ */
     object-fit: cover;
     background: #e5e7eb;
 }
@@ -369,6 +380,7 @@ nav a:hover, .dropdown:hover {
     font-size: 18px;
     color: #1f2937;
     min-height: 60px;
+    font-weight: 600;
 }
 
 .btn-detail {
@@ -390,7 +402,7 @@ nav a:hover, .dropdown:hover {
 /* SPECIALTIES SECTION */
 .specialties {
     margin-top: 60px;
-    padding: 40px 0;
+    padding: 40px 0 80px 0; /* Thêm padding bottom */
 }
 
 .specialties h2 {
@@ -398,13 +410,14 @@ nav a:hover, .dropdown:hover {
     text-align: center;
     margin-bottom: 40px;
     color: #1f2937;
+    font-weight: 700;
 }
 
 .specialty-list {
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Điều chỉnh minmax */
+    gap: 25px; /* Giảm khoảng cách */
 }
 
 .specialty-list li {
@@ -414,27 +427,28 @@ nav a:hover, .dropdown:hover {
     display: flex;
     align-items: center;
     gap: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .specialty-list li:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    transform: translateX(5px); /* Hiệu ứng trượt nhẹ */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .specialty-list img {
-    width: 80px;
-    height: 80px;
+    width: 70px; /* Giảm kích thước icon */
+    height: 70px;
     border-radius: 50%;
     object-fit: cover;
-    background: #e5e7eb;
+    border: 3px solid #3b82f6; /* Thêm border màu chủ đạo */
 }
 
 .specialty-list h3 {
     font-size: 18px;
     color: #1f2937;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
+    font-weight: 600;
 }
 
 .specialty-list a {
@@ -447,4 +461,69 @@ nav a:hover, .dropdown:hover {
 .specialty-list a:hover {
     color: #2563eb;
     text-decoration: underline;
+}
+
+/* MEDIA QUERIES cho thiết bị di động */
+@media (max-width: 1024px) {
+    header {
+        padding: 20px;
+    }
+
+    /* Ẩn bớt các mục trên màn hình nhỏ hơn để đỡ chật */
+    nav {
+        gap: 10px;
+    }
+    nav a, nav .dropdown span {
+        padding: 8px 12px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap; /* Cho phép header wrap trên màn hình nhỏ */
+        height: auto;
+    }
+    
+    .main-content-wrapper {
+        padding-top: 140px; /* Tăng padding top vì header đã wrap */
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    nav {
+        order: 3; /* Đẩy nav xuống dưới cùng trong header */
+        width: 100%;
+        justify-content: space-around;
+        margin-top: 10px;
+        gap: 0;
+    }
+
+    .search-box, .auth-buttons {
+        margin-top: 10px;
+    }
+    
+    .logo {
+        flex-grow: 1;
+    }
+
+    /* Đưa carousel trở lại 100vh trên mobile để nó hiển thị trọn vẹn */
+    .carousel {
+        height: 100vh;
+    }
+
+    .slide-logo {
+        font-size: 48px;
+    }
+    .slide-text {
+        font-size: 22px;
+    }
+
+    .service-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .specialty-list {
+        grid-template-columns: 1fr;
+    }
 }
