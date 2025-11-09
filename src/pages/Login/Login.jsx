@@ -1,73 +1,146 @@
-import React, { useState } from "react";
-import "./login.css";
+import React, { useState } from 'react';
+import { Shield, CheckCircle2, Eye, EyeOff } from 'lucide-react';
+import './login.css'; 
+import { Link } from 'react-router-dom';
 
-const LoginPage = () => {
+export default function Login() {
+  const [loginMethod, setLoginMethod] = useState('patientId');
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
+    patientId: '',
+    phone: '',
+    email: '',
+    password: '',
+    rememberMe: false,
   });
 
-  // Khi người dùng nhập
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+  const [signedIn, setSignedIn] = useState(false);
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (loginMethod === 'patientId' && !formData.patientId.trim()) {
+      newErrors.patientId = 'Patient ID is required';
+    }
+    if (loginMethod === 'phone' && !formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    }
+    if (loginMethod === 'email' && !formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    }
+    if (!formData.password) newErrors.password = 'Password is required';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
-  // Khi nhấn nút Submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Login Data:", formData);
-    // TODO: Gọi API đăng nhập hoặc điều hướng
+    if (validateForm()) setSignedIn(true);
   };
 
-  return (
-    <div className="login-container">
-      <div className="login-form">
-        <h1>Sign In</h1>
-        <p className="subtitle">Welcome to MyHealthCare!</p>
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
 
-        <form onSubmit={handleSubmit}>
-          <div className="input-group">
-            <label htmlFor="username">Phone / Patient ID</label>
+  const handleLoginMethodChange = (method) => setLoginMethod(method);
+
+  if (signedIn) {
+    return (
+      <div className="signin-success">
+        <div className="success-box">
+          <CheckCircle2 className="success-icon" />
+          <h2>Welcome Back!</h2>
+          <p>You have successfully signed in to MyHealthCare+</p>
+          <Link to="/" className="btn-back">
+            Go to Dashboard
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="signin-container">
+      <div className="signin-left">
+        <h1>MyHealthCare+</h1>
+        <h2>Welcome Back</h2>
+        <p>Sign in to access your health dashboard</p>
+      </div>
+
+      <div className="signin-right">
+        <h2>Sign In</h2>
+        <div className="signin-tabs">
+          {['patientId', 'phone', 'email'].map((method) => (
+            <button
+              key={method}
+              className={loginMethod === method ? 'active' : ''}
+              onClick={() => handleLoginMethodChange(method)}
+            >
+              {method === 'patientId'
+                ? 'Patient ID'
+                : method.charAt(0).toUpperCase() + method.slice(1)}
+            </button>
+          ))}
+        </div>
+
+        <form onSubmit={handleSubmit} className="signin-form">
+          {loginMethod === 'patientId' && (
             <input
               type="text"
-              id="username"
-              name="username"
-              placeholder="Enter your phone number or ID"
-              required
-              value={formData.username}
+              name="patientId"
+              placeholder="Enter your Patient ID"
+              value={formData.patientId}
               onChange={handleChange}
             />
-          </div>
-
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
+          )}
+          {loginMethod === 'phone' && (
             <input
-              type="password"
-              id="password"
+              type="tel"
+              name="phone"
+              placeholder="Enter your phone"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+          )}
+          {loginMethod === 'email' && (
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          )}
+          <div className="password-field">
+            <input
+              type={showPassword ? 'text' : 'password'}
               name="password"
               placeholder="Enter your password"
-              required
               value={formData.password}
               onChange={handleChange}
             />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <EyeOff /> : <Eye />}
+            </button>
           </div>
 
-          <button type="submit" className="login-button">
+          <button type="submit" className="btn-signin">
             Sign In
           </button>
         </form>
 
-        <div className="footer-text">
-          <a href="#">Forgot password?</a>
-        </div>
-
-        <div className="signup-link">
-          Don't have an account? <a href="#">Sign up now</a>
-        </div>
+        <p className="signin-footer">
+          Don’t have an account? <Link to="/signup">Sign Up</Link>
+        </p>
       </div>
     </div>
   );
-};
-
-export default LoginPage;
+}
