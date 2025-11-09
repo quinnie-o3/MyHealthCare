@@ -1,6 +1,8 @@
 // src/pages/Signup/Signup.jsx
 import React, { useState } from "react";
 import { Heart, Shield, CheckCircle2 } from "lucide-react";
+import Logo from "../../components/Logo/Logo"; // ← Thêm import này
+import { Link } from "react-router-dom"; // ← Thêm Link nếu chưa có
 import "./signup.css";
 
 export default function Signup() {
@@ -76,7 +78,7 @@ export default function Signup() {
       <div className="signup-container">
         <div className="signup-left">
           <div>
-            <h1 className="brand">MyHealthCare+</h1>
+            <Logo clickable={true} className="signup-logo" /> {/* ← Thay thế h1.brand */}
             <h2>Your Health, Our Priority</h2>
             <p>Join thousands of patients who trust us with their healthcare needs.</p>
           </div>
@@ -100,8 +102,7 @@ export default function Signup() {
 
         <div className="signup-right">
           <div className="mobile-header">
-            <Heart className="icon" />
-            <span>MyHealthCare+</span>
+            <Logo clickable={false} className="mobile-logo" /> {/* ← Thay thế phần mobile header */}
           </div>
 
           <h2>Create Account</h2>
@@ -185,7 +186,7 @@ export default function Signup() {
             </button>
 
             <p className="signin-text">
-              Already have an account? <a href="#">Sign In</a>
+              Already have an account? <Link to="/login">Sign In</Link>
             </p>
           </form>
         </div>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Shield, CheckCircle2, Eye, EyeOff } from 'lucide-react';
+import Logo from '../../components/Logo/Logo'; // ← Thêm import này
 import './login.css'; 
 import { Link } from 'react-router-dom';
 
@@ -67,7 +68,7 @@ export default function Login() {
   return (
     <div className="signin-container">
       <div className="signin-left">
-        <h1>MyHealthCare+</h1>
+        <Logo clickable={true} className="login-logo" /> {/* ← Thay thế h1 */}
         <h2>Welcome Back</h2>
         <p>Sign in to access your health dashboard</p>
       </div>
@@ -138,7 +139,7 @@ export default function Login() {
         </form>
 
         <p className="signin-footer">
-          Don’t have an account? <Link to="/signup">Sign Up</Link>
+          Don't have an account? <Link to="/signup">Sign Up</Link>
         </p>
       </div>
     </div>

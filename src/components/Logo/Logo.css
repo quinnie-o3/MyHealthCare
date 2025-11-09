@@ -1,0 +1,27 @@
+.logo-container {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  cursor: pointer;
+}
+
+.logo-my {
+  color: #2563eb;
+}
+
+.logo-health {
+  color: #1e40af;
+}
+
+.logo-care {
+  color: #1e3a8a;
+}
+
+.logo-plus {
+  color: #ef4444;
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./home.css";
+import "./Carousel.css";
 
 const slides = [
   {
@@ -20,8 +20,7 @@ export default function Carousel() {
   const [current, setCurrent] = useState(0);
 
   const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
-  const prevSlide = () =>
-    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+  const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
 
   useEffect(() => {
     const interval = setInterval(nextSlide, 5000);
@@ -44,21 +43,14 @@ export default function Carousel() {
         </div>
       ))}
 
-      <button className="carousel-control prev" onClick={prevSlide}>
-        ‹
-      </button>
-      <button className="carousel-control next" onClick={nextSlide}>
-        ›
-      </button>
-
-      <div className="carousel-indicators">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            className={`indicator ${i === current ? "active" : ""}`}
-            onClick={() => setCurrent(i)}
-          ></button>
-        ))}
+      {/* Nút chuyển slide trái/phải */}
+      <div className="carousel-nav">
+        <button className="carousel-btn prev-btn" onClick={prevSlide}>
+          ‹
+        </button>
+        <button className="carousel-btn next-btn" onClick={nextSlide}>
+          ›
+        </button>
       </div>
     </div>
   );

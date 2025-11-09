@@ -152,14 +152,14 @@ section p {
 .commitment {
     text-align: center;
     padding: 50px 40px;
-    background-color: #e6f2ff; /* Very light blue background */
+    background-color: #e6f2ff;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 .commitment p {
     font-size: 1.2em;
     font-weight: 400;
-    color: #0056b3; /* Primary blue */
+    color: #0056b3; 
     max-width: 800px;
     margin: 0 auto;
 }
@@ -173,17 +173,29 @@ section p {
         font-size: 1.8em;
     }
     .about-hospital .content-wrapper {
-        flex-direction: column; /* Stack image and text on small screens */
+        flex-direction: column;
     }
     .about-hospital .image-wrapper {
-        flex: none; /* Remove fixed width */
-        width: 100%; /* Full width */
+        flex: none; 
+        width: 100%; 
         margin-top: 20px;
     }
     .features-grid {
-        grid-template-columns: 1fr; /* Single column for features */
+        grid-template-columns: 1fr;
     }
     .commitment p {
         font-size: 1em;
     }
+}
+
+/* Page wrapper */
+.aboutus-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+}
+
+.aboutus-page main {
+  flex: 1;
 }
