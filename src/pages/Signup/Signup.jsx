@@ -133,11 +133,11 @@ export default function Signup() {
               </div>
             </div>
 
-            <label>Email</label>
+            <label>Email address</label>
             <input type="email" name="email" value={formData.email} onChange={handleChange} />
             {errors.email && <p className="error">{errors.email}</p>}
 
-            <label>Phone</label>
+            <label>Phone number</label>
             <input type="tel" name="phone" value={formData.phone} onChange={handleChange} />
             {errors.phone && <p className="error">{errors.phone}</p>}
 
@@ -181,7 +181,7 @@ export default function Signup() {
             </label>
             {errors.termsAccepted && <p className="error">{errors.termsAccepted}</p>}
 
-            <button type="submit" className="btn-primary">
+            <button type="submit" className="create-account-button">
               Create Account
             </button>
 

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Shield, CheckCircle2, Eye, EyeOff } from 'lucide-react';
-import Logo from '../../components/Logo/Logo'; // ← Thêm import này
+import Logo from '../../components/Logo/Logo'; 
 import './login.css'; 
 import { Link } from 'react-router-dom';
 
 export default function Login() {
-  const [loginMethod, setLoginMethod] = useState('patientId');
+  // Use email or phone login only (no patientId in DB)
+  const [loginMethod, setLoginMethod] = useState('email');
   const [formData, setFormData] = useState({
-    patientId: '',
     phone: '',
     email: '',
     password: '',
@@ -20,9 +20,6 @@ export default function Login() {
 
   const validateForm = () => {
     const newErrors = {};
-    if (loginMethod === 'patientId' && !formData.patientId.trim()) {
-      newErrors.patientId = 'Patient ID is required';
-    }
     if (loginMethod === 'phone' && !formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
     }
@@ -76,26 +73,26 @@ export default function Login() {
       <div className="signin-right">
         <h2>Sign In</h2>
         <div className="signin-tabs">
-          {['patientId', 'phone', 'email'].map((method) => (
+          {['email', 'phone'].map((method) => (
             <button
               key={method}
+              type="button"
               className={loginMethod === method ? 'active' : ''}
               onClick={() => handleLoginMethodChange(method)}
             >
-              {method === 'patientId'
-                ? 'Patient ID'
-                : method.charAt(0).toUpperCase() + method.slice(1)}
+              {method.charAt(0).toUpperCase() + method.slice(1)}
             </button>
           ))}
         </div>
 
         <form onSubmit={handleSubmit} className="signin-form">
-          {loginMethod === 'patientId' && (
+
+          {loginMethod === 'email' && (
             <input
-              type="text"
-              name="patientId"
-              placeholder="Enter your Patient ID"
-              value={formData.patientId}
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
               onChange={handleChange}
             />
           )}
@@ -105,15 +102,6 @@ export default function Login() {
               name="phone"
               placeholder="Enter your phone"
               value={formData.phone}
-              onChange={handleChange}
-            />
-          )}
-          {loginMethod === 'email' && (
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              value={formData.email}
               onChange={handleChange}
             />
           )}

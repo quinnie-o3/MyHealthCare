@@ -4,8 +4,9 @@
   background: linear-gradient(to right, #ebf8ff, #e6fffa);
 }
 
+
 .signin-left {
-  flex: 1;
+  flex:  0 0 33.333%;
   background: linear-gradient(135deg, #2563eb, #14b8a6);
   color: white;
   display: flex;
@@ -15,8 +16,8 @@
 }
 
 .signin-right {
-  flex: 1;
-  background: white;
+  flex: 0 0 66.667%;
+  background: transparent;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,6 +37,7 @@
   border: none;
   cursor: pointer;
   background: #f3f4f6;
+  color : #3e4148;
 }
 
 .signin-tabs button.active {
@@ -49,7 +51,9 @@
   margin-bottom: 15px;
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #d1d5db;
+  border: 2px solid #d1d5db;
+  background: transparent;
+  color: #000;
 }
 
 .password-field {
@@ -74,6 +78,12 @@
   border: none;
   cursor: pointer;
   width: 100%;
+}
+
+.btn-signin:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3) !important;
+  border: none;
 }
 
 .btn-signin:hover {
