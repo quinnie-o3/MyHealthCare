@@ -1,12 +1,27 @@
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import Carousel from "./Carousel";
+import Carousel from "../../components/Carousel";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 
 const Home = () => {
+   const carouselSlides = [
+    {
+      image: "/homePage_images/homepage1.png",
+      text: "Where compassion meets medical excellence.\nWe care for your health with dedication, empathy, and trust.",
+    },
+    {
+      image: "/homePage_images/homepage2.png",
+      text: "State-of-the-art facilities for comprehensive care.\nModern equipment, comfortable environment, expert staff.",
+    },
+    {
+      image: "/homePage_images/homepage3.png",
+      text: "Your Trusted Partner in Health and Wellness\nBuilding healthier communities, one family at a time.",
+    },
+  ];
+
   const services = [
     {
       image: "homePage_images/whole-body-thumb.jpg",
@@ -47,7 +62,7 @@ const Home = () => {
       description: "Comprehensive care for infants, children, and adolescents"
     },
     {
-      image: "homePage_images/OB-GYN.jpg",
+      image: "/homePage_images/OB-GYN.jpg",
       title: "Obstetrics & Gynecology",
       description: "Women's health and reproductive care"
     },
@@ -63,7 +78,6 @@ const Home = () => {
       <Header />
 
       <main className="main-content">
-        {/* Hero Section */}
         <section className="hero-section">
           <div className="hero-container">
             <div className="hero-text">
@@ -74,12 +88,11 @@ const Home = () => {
             </div>
             
             <div className="carousel-wrapper">
-              <Carousel />
+              <Carousel slides={carouselSlides} height="70vh" showDots={true} />
             </div>
           </div>
         </section>
 
-        {/* Services Section */}
         <section id="services" className="services-section">
           <div className="section-container">
             <div className="section-header">
@@ -112,7 +125,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Specialties Section */}
         <section id="specialties" className="specialties-section">
           <div className="section-container">
             <div className="section-header">
@@ -147,7 +159,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="cta-section">
           <div className="cta-container">
             <h2 className="cta-title">Ready to Take Control of Your Health?</h2>
