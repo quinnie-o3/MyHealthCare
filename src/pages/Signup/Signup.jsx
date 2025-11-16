@@ -1,6 +1,6 @@
 // src/pages/Signup/Signup.jsx
 import React, { useState } from "react";
-import { Heart, Shield, CheckCircle2 } from "lucide-react";
+import { Heart, Shield, CheckCircle2, AlertCircle, XCircle } from "lucide-react";
 import Logo from "../../components/Logo/Logo"; // ← Thêm import này
 import { Link, useNavigate } from "react-router-dom"; // ← Thêm Link nếu chưa có
 import "./signup.css";
@@ -68,26 +68,108 @@ export default function () {
     } = dataWithRole;
     //Bắt đầu gọi API
     setLoading(true); //kích hoạt trạng thái loading
+    setErrors({}); // Clear errors trước khi submit
     try {
-      await register(dataToSend);
-      alert("Register successfully! Please log in!")
-      navigate("/login")
+      const response = await register(dataToSend);
+      console.log("✅ Register API call thành công - không có exception");
+      console.log("Register response:", response);
+      console.log("Register response type:", typeof response);
+      console.log("Register response keys:", response && typeof response === 'object' ? Object.keys(response) : 'no keys');
+      console.log("Register response.success:", response?.success);
+ 
+      // Nếu không có exception, nghĩa là đăng ký thành công (backend đã tạo user)
+      // KHÔNG lưu tokens khi sign up - user phải login lại để bảo mật hơn
+      // Backend có thể trả về tokens nhưng chúng ta không sử dụng
+      
+      // Hiển thị thông báo thành công và redirect về login
+      // Ưu tiên message từ backend, nếu không có thì dùng message mặc định
+      const successMessage = response?.message || 
+                           response?.detail || 
+                           "Register successfully! Please log in to continue.";
+      
+      console.log("✅ Đăng ký thành công! User cần login để tiếp tục...");
+      alert(successMessage);
+      navigate("/login");
+      
     } catch (error) {
-      console.error("Register error:", error);
-      //Handle Django validation errors:
-      if (error && typeof error == "object") {
-        const backendErrors = {};
-        Object.keys(error).forEach((key) => {
-          if (Array.isArray(error[key])) {
-            backendErrors[key] = error[key][0];
-          } else {
-            backendErrors[key] = error[key];
+      // CHỈ vào đây khi có exception (lỗi validation hoặc lỗi server)
+      console.error("❌ Register error - có exception:", error);
+      console.error("Error type:", typeof error);
+      console.error("Error value:", error);
+      console.error("Error keys:", error && typeof error === 'object' && !Array.isArray(error) ? Object.keys(error) : 'no keys');
+
+      // Xử lý lỗi từ backend
+      // Lưu ý: authAPI.js throw error.response.data, không phải error object đầy đủ
+      const backendData = error; // error đã là error.response.data từ authAPI.js
+      const backendErrors = {};
+
+      // Xử lý các trường hợp error khác nhau
+      if (!backendData) {
+        // Error null/undefined
+        setErrors({ general: 'Network error. Please check your connection and try again.' });
+      }
+        else if (Array.isArray(backendData)) {
+        // Error là array
+        setErrors({ general: backendData[0] || 'Register failed. Please try again.' });
+      } else if (typeof backendData === 'object') {
+        // Error là object - xử lý như bình thường
+        Object.keys(backendData).forEach((key) => {
+          if (Array.isArray(backendData[key])) {
+            // Lấy lỗi đầu tiên trong mảng (theo chuẩn DRF)
+            backendErrors[key] = backendData[key][0]; 
+          } else if (typeof backendData[key] === 'string') {
+            // Xử lý các lỗi dạng string
+            backendErrors[key] = backendData[key];
+          } else if (backendData[key] !== null && backendData[key] !== undefined) {
+            // Xử lý các lỗi không phải dạng mảng hoặc string
+            backendErrors[key] = JSON.stringify(backendData[key]);
           }
         });
-        setErrors(backendErrors);
+
+        // Xử lý lỗi chung (không thuộc về field nào) mà DRF hay trả về
+        if (backendErrors.detail) {
+            backendErrors.general = backendErrors.detail;
+            delete backendErrors.detail;
+        }
+        if (backendErrors.non_field_errors) {
+            backendErrors.general = backendErrors.non_field_errors;
+            delete backendErrors.non_field_errors;
+        }
+        if (backendErrors.message) {
+            backendErrors.general = backendErrors.message;
+            delete backendErrors.message;
+        }
+
+        // Nếu có lỗi email (email đã tồn tại), clear email và password fields
+        if (backendErrors.email) {
+          setFormData((prev) => ({
+            ...prev,
+            email: '', // Clear email để user phải nhập lại
+            password: '', // Clear password để bảo mật
+            password_confirm: '', // Clear confirm password
+          }));
+        }
+
+        // Nếu có lỗi phone (phone đã tồn tại), clear phone field
+        if (backendErrors.phone_num) {
+          setFormData((prev) => ({
+            ...prev,
+            phone_num: '',
+          }));
+        }
+
+        // Nếu không có lỗi nào được set, hiển thị lỗi chung
+        if (Object.keys(backendErrors).length === 0) {
+          setErrors({ general: 'Register failed. Please check your information and try again.' });
+        } else {
+          setErrors(backendErrors); // Cập nhật state errors với lỗi từ backend
+        }
       } else {
-        setErrors({ general: 'Register failed. Please try again.!' });
+        // Lỗi không xác định
+        console.error("Unknown error format:", backendData);
+        setErrors({ general: 'An unexpected error occurred. Please try again later.' });
       }
+
     } finally {
       setLoading(false); //kết thúc trạng thái loading
     }
@@ -157,6 +239,12 @@ export default function () {
           <h2> Create Account</h2>
           <p>Join us to start your healthcare journey</p>
           <form onSubmit={handleSubmit}>
+            {errors.general && (
+              <div className="general-error">
+                <AlertCircle className="error-icon" />
+                <span>{errors.general}</span>
+              </div>
+            )}
             {/* Hàng 1: Full Name */}
             <div className="row">
               <div className="col">
@@ -169,7 +257,12 @@ export default function () {
                   placeholder="Nguyen Van A"
                   className={errors.full_name ? 'error' : ''}
                 />
-                {errors.full_name && <span className="error-text">{errors.full_name}</span>}
+                {errors.full_name && (
+                  <span className="error-text">
+                    <XCircle className="error-icon-small" />
+                    {errors.full_name}
+                  </span>
+                )}
               </div>
             </div>
 
@@ -184,7 +277,12 @@ export default function () {
                   onChange={handleChange}
                   placeholder="email@example.com"
                   className={errors.email ? 'error' : ''} />
-                {errors.email && <span className="error-text">{errors.email}</span>}
+                {errors.email && (
+                  <span className="error-text">
+                    <XCircle className="error-icon-small" />
+                    {errors.email}
+                  </span>
+                )}
               </div>
             </div>
 
@@ -200,7 +298,12 @@ export default function () {
                   placeholder="0901234567"
                   className={errors.phone_num ? 'error' : ''}
                 />
-                {errors.phone_num && <span className="error-text">{errors.phone_num}</span>}
+                {errors.phone_num && (
+                  <span className="error-text">
+                    <XCircle className="error-icon-small" />
+                    {errors.phone_num}
+                  </span>
+                )}
               </div>
             </div>
 
@@ -219,9 +322,15 @@ export default function () {
                   <option value="female">Female</option>
                   <option value="other">Other</option>
                 </select>
-                {errors.gender && <span className="error-text">{errors.gender}</span>}
+                {errors.gender && (
+                  <span className="error-text">
+                    <XCircle className="error-icon-small" />
+                    {errors.gender}
+                  </span>
+                )}
               </div>
-
+          </div>
+            <div className="row">
               <div className="col">
                 <label>Date of Birth</label>
                 <input
@@ -231,7 +340,12 @@ export default function () {
                   onChange={handleChange}
                   className={errors.date_of_birth ? 'error' : ''}
                 />
-                {errors.date_of_birth && <span className="error-text">{errors.date_of_birth}</span>}
+                {errors.date_of_birth && (
+                  <span className="error-text">
+                    <XCircle className="error-icon-small" />
+                    {errors.date_of_birth}
+                  </span>
+                )}
               </div>
             </div>
 {/* Hàng Mới: Address */}
@@ -246,7 +360,12 @@ export default function () {
             placeholder="123 Example Street, City, Country"
             className={errors.address ? 'error' : ''}
         />
-        {errors.address && <span className="error-text">{errors.address}</span>}
+        {errors.address && (
+          <span className="error-text">
+            <XCircle className="error-icon-small" />
+            {errors.address}
+          </span>
+        )}
     </div>
 </div>
             {/* Hàng 5: Password */}
@@ -261,7 +380,12 @@ export default function () {
                   placeholder="Mật khẩu (ít nhất 8 ký tự)"
                   className={errors.password ? 'error' : ''}
                 />
-                {errors.password && <span className="error-text">{errors.password}</span>}
+                {errors.password && (
+                  <span className="error-text">
+                    <XCircle className="error-icon-small" />
+                    {errors.password}
+                  </span>
+                )}
               </div>
             </div>
 
@@ -277,7 +401,12 @@ export default function () {
                   placeholder="Nhập lại mật khẩu"
                   className={errors.password_confirm ? 'error' : ''}
                 />
-                {errors.password_confirm && <span className="error-text">{errors.password_confirm}</span>}
+                {errors.password_confirm && (
+                  <span className="error-text">
+                    <XCircle className="error-icon-small" />
+                    {errors.password_confirm}
+                  </span>
+                )}
               </div>
             </div>
 
@@ -295,7 +424,12 @@ export default function () {
                     I agree to the **Terms of Service and Privacy Policy**, including HIPAA authorization
                   </span>
                 </label>
-                {errors.termsAccepted && <span className="error-text">{errors.termsAccepted}</span>}
+                {errors.termsAccepted && (
+                  <span className="error-text">
+                    <XCircle className="error-icon-small" />
+                    {errors.termsAccepted}
+                  </span>
+                )}
               </div>
             </div>
 

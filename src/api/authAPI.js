@@ -60,27 +60,55 @@ apiClient.interceptors.response.use(
 export const register = async (userData) => {
     try {
         const response = await apiClient.post('/api/v1/auth/register/', userData);
-        return response.data;
+        console.log('Register API response:', response);
+        console.log('Register API response.data:', response.data);
+        console.log('Register API response.status:', response.status);
+        // Trả về response.data, nếu null/undefined thì trả về object rỗng
+        // Điều này đảm bảo không throw error khi đăng ký thành công
+        return response.data || {};
     } catch (error){
-        if (error.response & error.response.data){
+        console.error('Register API error:', error);
+        console.error('Error response:', error.response);
+        console.error('Error status:', error.response?.status);
+        // Throw error.response.data nếu có (lỗi từ backend)
+        // Hoặc throw error object với message nếu không có response
+        if (error.response && error.response.data){
             throw error.response.data;
         }
-        throw error; //Nếu không có response data, throw do lỗi axios
+        // Nếu không có response data, throw error object với message
+        throw { general: error.message || 'Register failed. Please try again.' };
     }
 };
 
 export const login = async (credentials) => {
     try {
-        const response = await apiClient.post('/api/v1/auth/login', credentials);
+        // Không gửi token khi login (public endpoint)
+        const response = await apiClient.post('/api/v1/auth/login/', credentials);
+        console.log('Login API response:', response);
+        console.log('Login API response.data:', response.data);
+        console.log('Login API response.status:', response.status);
+        
         //Save tokens and user to LocalStorage
-        if (response.data.tokens){
+        if (response.data && response.data.tokens){
             localStorage.setItem('access_token', response.data.tokens.access);
             localStorage.setItem('refresh_token', response.data.tokens.refresh);
-            localStorage.setItem('user', JSON.stringify(response.data.user));
+            if (response.data.user) {
+                localStorage.setItem('user', JSON.stringify(response.data.user));
+            }
+            console.log('✅ Tokens đã được lưu vào localStorage');
         }
-        return response.data;
+        return response.data || {};
     } catch (error){
-        throw error.response?.data || error.message;
+        console.error('Login API error:', error);
+        console.error('Error response:', error.response);
+        console.error('Error status:', error.response?.status);
+        console.error('Error response.data:', error.response?.data);
+        
+        // Throw error data từ backend hoặc error message
+        if (error.response && error.response.data) {
+            throw error.response.data;
+        }
+        throw { message: error.message || 'Login failed. Please try again.' };
     }
 };
 
@@ -88,7 +116,7 @@ export const logout = async() => {
     try {
         const refreshToken = localStorage.getItem('refresh_token');
         if (refreshToken){
-            await apiClient.post('/api/v1/logout', { refresh: refreshToken });
+            await apiClient.post('/api/v1/auth/logout', { refresh: refreshToken });
         } 
     } catch (error){
             console.error("Logout error:", error);
