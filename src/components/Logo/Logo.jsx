@@ -1,15 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Stethoscope } from "lucide-react";
 import "./Logo.css";
 
 const Logo = ({ clickable = true, className = "" }) => {
   const logoContent = (
-    <h1 className={`logo ${className}`}>
-      <span className="logo-my">My</span>
-      <span className="logo-health">Health</span>
-      <span className="logo-care">Care</span>
-      <span className="logo-plus">+</span>
-    </h1>
+    <div className={`logo-wrapper ${className}`}>
+      <div className="logo-icon">
+        <Stethoscope className="logo-icon-svg" />
+      </div>
+      <h1 className="logo">
+        <span className="logo-myhealth">MyHealth</span>
+        <span className="logo-care">Care</span>
+      </h1>
+    </div>
   );
 
   return clickable ? (

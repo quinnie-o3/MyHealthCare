@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Carousel.css";
 
 const slides = [
   {
     image: "/homePage_images/homepage1.png",
-    text: "Where compassion meets medical excellence.\nWe care for your health with dedication, empathy, and trust.",
+    title: "Welcome to MyHealthCare",
+    subtitle: "Your trusted partner in health. Book appointments, access medical records, and connect with healthcare professionals.",
   },
   {
     image: "/homePage_images/homepage2.png",
-    text: "State-of-the-art facilities for comprehensive care.\nModern equipment, comfortable environment, expert staff.",
+    title: "State-of-the-art Facilities",
+    subtitle: "Modern equipment, comfortable environment, expert staff for comprehensive care.",
   },
   {
     image: "/homePage_images/homepage3.png",
-    text: "Your Trusted Partner in Health and Wellness\nBuilding healthier communities, one family at a time.",
+    title: "Your Trusted Partner in Health and Wellness",
+    subtitle: "Building healthier communities, one family at a time.",
   },
 ];
 
@@ -36,14 +40,20 @@ export default function Carousel() {
           style={{ backgroundImage: `url(${slide.image})` }}
         >
           <div className="slide-content">
-            {slide.text.split("\n").map((line, idx) => (
-              <div key={idx}>{line}</div>
-            ))}
+            <h1 className="slide-title">{slide.title}</h1>
+            <p className="slide-subtitle">{slide.subtitle}</p>
           </div>
         </div>
       ))}
 
-      {/* Nút chuyển slide trái/phải */}
+      {/* Fixed Button */}
+      <div className="slide-button-wrapper">
+        <Link to="/booking" className="slide-button">
+          Book an Appointment
+        </Link>
+      </div>
+
+      {/* Navigation arrows */}
       <div className="carousel-nav">
         <button className="carousel-btn prev-btn" onClick={prevSlide}>
           ‹
@@ -51,6 +61,18 @@ export default function Carousel() {
         <button className="carousel-btn next-btn" onClick={nextSlide}>
           ›
         </button>
+      </div>
+
+      {/* Dots indicator */}
+      <div className="carousel-dots">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            className={`carousel-dot ${i === current ? "active" : ""}`}
+            onClick={() => setCurrent(i)}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
       </div>
     </div>
   );

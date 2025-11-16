@@ -7,8 +7,8 @@ import {
   Mail,
   Phone,
   MapPin,
-  Clock
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import Logo from "./Logo/Logo";
 import "./Footer.css";
 
@@ -21,7 +21,7 @@ const Footer = () => {
           <div className="footer-section">
             <Logo clickable={false} className="footer-logo-custom" />
             <p className="footer-description">
-              Your trusted partner in healthcare, providing comprehensive medical services with compassion and excellence.
+              Your trusted partner in health and wellness.
             </p>
             <div className="social-links">
               <a href="#" className="social-link">
@@ -43,11 +43,10 @@ const Footer = () => {
           <div className="footer-section">
             <h4 className="footer-title">Quick Links</h4>
             <ul className="footer-list">
-              <li><a href="#home" className="footer-link">Home</a></li>
-              <li><a href="#about" className="footer-link">About Us</a></li>
-              <li><a href="#services" className="footer-link">Services</a></li>
-              <li><a href="#specialties" className="footer-link">Specialties</a></li>
-              <li><a href="#contact" className="footer-link">Contact</a></li>
+              <li><Link to="/" className="footer-link">Home</Link></li>
+              <li><Link to="/about" className="footer-link">About Us</Link></li>
+              <li><Link to="/medical" className="footer-link">Services</Link></li>
+              <li><Link to="/booking" className="footer-link">Booking</Link></li>
             </ul>
           </div>
 
@@ -55,11 +54,10 @@ const Footer = () => {
           <div className="footer-section">
             <h4 className="footer-title">Services</h4>
             <ul className="footer-list">
-              <li><a href="#" className="footer-link">Health Checkup</a></li>
-              <li><a href="#" className="footer-link">Cancer Screening</a></li>
-              <li><a href="#" className="footer-link">Imaging Diagnosis</a></li>
+              <li><a href="#" className="footer-link">General Medicine</a></li>
               <li><a href="#" className="footer-link">Pediatrics</a></li>
-              <li><a href="#" className="footer-link">Gynecology</a></li>
+              <li><a href="#" className="footer-link">Cardiology</a></li>
+              <li><a href="#" className="footer-link">Dermatology</a></li>
             </ul>
           </div>
 
@@ -67,10 +65,6 @@ const Footer = () => {
           <div className="footer-section">
             <h4 className="footer-title">Contact Us</h4>
             <ul className="contact-list">
-              <li className="contact-item">
-                <MapPin className="contact-icon" />
-                <span className="contact-text">123 Healthcare Street, Medical District, City 12345</span>
-              </li>
               <li className="contact-item">
                 <Phone className="contact-icon" />
                 <span className="contact-text">+1 (555) 123-4567</span>
@@ -80,8 +74,8 @@ const Footer = () => {
                 <span className="contact-text">info@myhealthcare.com</span>
               </li>
               <li className="contact-item">
-                <Clock className="contact-icon" />
-                <span className="contact-text">24/7 Emergency Services</span>
+                <MapPin className="contact-icon" />
+                <span className="contact-text">123 Health St, Medical City</span>
               </li>
             </ul>
           </div>
@@ -91,7 +85,7 @@ const Footer = () => {
         <div className="footer-bottom">
           <div className="footer-bottom-content">
             <p className="copyright">
-              © 2025 MyHealthCare+. All rights reserved.
+              © 2025 MyHealthCare. All rights reserved.
             </p>
             <div className="footer-links">
               <a href="#" className="footer-bottom-link">Privacy Policy</a>

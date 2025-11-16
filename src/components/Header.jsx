@@ -28,7 +28,7 @@ const Header = () => {
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="dropdown-toggle"
               >
-                Services
+                Medical Services
                 <ChevronDown className="dropdown-icon" />
               </button>
               
@@ -37,12 +37,12 @@ const Header = () => {
                   <Link to="/medical" className="dropdown-item">
                     Medical
                   </Link>
-                  <a href="#booking" className="dropdown-item">
-                    Booking
-                  </a>
                 </div>
               )}
             </div>
+            <Link to="/booking" className="nav-link">
+              Booking
+            </Link>
           </nav>
 
           {/* Search & Auth */}
