@@ -128,27 +128,24 @@ const Services = () => {
               </p>
             </div>
 
-            <div className="services-grid">
+            <div className="services-list">
               {services.map((service, index) => (
-                <div key={index} className="service-card">
-                  <div className="service-image-wrapper">
-                    <img 
-                      src={service.image} 
-                      alt={service.title}
-                      className="service-image"
-                    />
-                  </div>
-                  <div className="service-content">
-                    <h3 className="service-title">{service.title}</h3>
-                    <p className="service-description">{service.description}</p>
-                    <p className="service-details">{service.details}</p>
-                    <Link to="/signup" className="service-link">
-                      Book Appointment <ArrowRight className="link-icon" />
+                <div key={index} className="service-item">
+                  <img src={service.image} alt={service.title} className="service-item-img" />
+
+                  <div className="service-item-content">
+                    <h3>{service.title}</h3>
+                    <p className="desc">{service.description}</p>
+                    <p className="details">{service.details}</p>
+
+                    <Link to="/signup" className="btn-book-item">
+                      Book Appointment <ArrowRight size={16} />
                     </Link>
                   </div>
                 </div>
               ))}
             </div>
+
           </div>
         </section>
 

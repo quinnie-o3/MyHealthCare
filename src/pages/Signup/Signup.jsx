@@ -1,9 +1,9 @@
 // src/pages/Signup/Signup.jsx
 import React, { useState } from "react";
 import { Heart, Shield, CheckCircle2 } from "lucide-react";
-import Logo from "../../components/Logo/Logo"; // ← Thêm import này
-import { Link, useNavigate } from "react-router-dom"; // ← Thêm Link nếu chưa có
-import "./signup.css";
+import Logo from "../../components/Logo/Logo"; 
+import { Link, useNavigate } from "react-router-dom"; 
+import "./Signup.css";
 import { register } from "../../api/authAPI"
 
 export default function () {
@@ -45,18 +45,13 @@ export default function () {
   };
 
   const handleSubmit = async (e) => {
-    //Thực hiện validation và lấy lỗi
     e.preventDefault();
     const validationErrors = validateForm();
-    //Cập nhật state errors
     setErrors(validationErrors);
 
-    //Kiểm tra nếu có bất kí lỗi nào
     if (Object.keys(validationErrors).length > 0){
-      //Nếu có lỗi, không gọi API, và không setSubmitted(true)
-      //user sẽ thấy các thông báo lỗi trên form
       return;
-    }
+    }  
     const dataWithRole = { 
         ...formData, 
         role: "patient" 
@@ -66,15 +61,13 @@ export default function () {
       termsAccepted, 
       ...dataToSend
     } = dataWithRole;
-    //Bắt đầu gọi API
-    setLoading(true); //kích hoạt trạng thái loading
+    setLoading(true); 
     try {
       await register(dataToSend);
       alert("Register successfully! Please log in!")
       navigate("/login")
     } catch (error) {
       console.error("Register error:", error);
-      //Handle Django validation errors:
       if (error && typeof error == "object") {
         const backendErrors = {};
         Object.keys(error).forEach((key) => {
@@ -89,7 +82,7 @@ export default function () {
         setErrors({ general: 'Register failed. Please try again.!' });
       }
     } finally {
-      setLoading(false); //kết thúc trạng thái loading
+      setLoading(false); 
     }
   };
 
@@ -127,7 +120,7 @@ export default function () {
       <div className="signup-container">
         <div className="signup-left">
           <div>
-            <Logo clickable={true} className="signup-logo" /> {/* ← Thay thế h1.brand */}
+            <Logo clickable={true} className="signup-logo" /> 
             <h2>Your Health, Our Priority</h2>
             <p>Join thousands of patients who trust us with their healthcare needs.</p>
           </div>
@@ -151,13 +144,13 @@ export default function () {
 
         <div className="signup-right">
           <div className="mobile-header">
-            <Logo clickable={false} className="mobile-logo" /> {/* ← Thay thế phần mobile header */}
+            <Logo clickable={false} className="mobile-logo" /> 
           </div>
 
-          <h2> Create Account</h2>
-          <p>Join us to start your healthcare journey</p>
+          <h2><b> Create Account</b></h2>
+          <p style = {{color: "#152b5aff"}}><b>Join us to start your healthcare journey</b></p>
           <form onSubmit={handleSubmit}>
-            {/* Hàng 1: Full Name */}
+
             <div className="row">
               <div className="col">
                 <label>Full Name</label>
@@ -173,7 +166,6 @@ export default function () {
               </div>
             </div>
 
-            {/* Hàng 2: Email */}
             <div className="row">
               <div className="col">
                 <label>Email</label>
@@ -188,7 +180,6 @@ export default function () {
               </div>
             </div>
 
-            {/* Hàng 3: Phone Number */}
             <div className="row">
               <div className="col">
                 <label>Phone</label>
@@ -204,7 +195,6 @@ export default function () {
               </div>
             </div>
 
-            {/* Hàng 4: Gender và Date of Birth (Đã hợp nhất) */}
             <div className="row">
               <div className="col">
                 <label>Gender</label>
@@ -274,7 +264,7 @@ export default function () {
                   name="password_confirm"
                   value={formData.password_confirm}
                   onChange={handleChange}
-                  placeholder="Nhập lại mật khẩu"
+                  placeholder="Confirm your password"
                   className={errors.password_confirm ? 'error' : ''}
                 />
                 {errors.password_confirm && <span className="error-text">{errors.password_confirm}</span>}
@@ -292,14 +282,13 @@ export default function () {
                     onChange={handleChange}
                   />
                   <span>
-                    I agree to the **Terms of Service and Privacy Policy**, including HIPAA authorization
+                    I agree to the <b>Terms of Service and Privacy Policy</b>, including HIPAA authorization
                   </span>
                 </label>
                 {errors.termsAccepted && <span className="error-text">{errors.termsAccepted}</span>}
               </div>
             </div>
 
-            {/* Nút Submit và Link */}
             <button type="submit" className="btn-primary" disabled={loading}> 
               {loading ? 'Processing...' : 'Create Account'}
             </button>

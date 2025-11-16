@@ -14,55 +14,56 @@ const Header = () => {
           {/* Logo */}
           <Logo />
 
-          {/* Navigation */}
-          <nav className="nav-menu">
-            <Link to="/" className="nav-link"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-              Home
-            </Link>
-            <Link to="/about" className="nav-link">
-              About us
-            </Link>
-            <div className="dropdown">
-              <button
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="dropdown-toggle"
+           <div className="header-right"> 
+            <nav className="nav-menu">
+              <Link
+                to="/"
+                className="nav-link"
+                onClick={() =>
+                  window.scrollTo({ top: 0, behavior: "smooth" })
+                }
               >
-                Services
-                <ChevronDown className="dropdown-icon" />
-              </button>
-              
-              {dropdownOpen && (
-                <div className="dropdown-menu">
-                  <Link to="/medical" className="dropdown-item">
-                    Medical
-                  </Link>
-                  <a href="#booking" className="dropdown-item">
-                    Booking
-                  </a>
-                </div>
-              )}
-            </div>
-          </nav>
+                Home
+              </Link>
 
-          {/* Search & Auth */}
-          <div className="header-actions">
-            <div className="search-box">
-              <Search className="search-icon" />
-              <input
-                type="text"
-                placeholder="Search..."
-                className="search-input"
-              />
-            </div>
-            
-            <div className="auth-buttons">
-              <Link to="/login" className="btn-login">
-                Log in
+              <Link to="/about" className="nav-link">
+                About us
               </Link>
-              <Link to="/signup" className="btn-signup">
-                Sign up
+
+              {/* Services Dropdown */}
+              <div
+                className="dropdown"
+                onMouseEnter={() => setDropdownOpen(true)}
+                onMouseLeave={() => setDropdownOpen(false)}
+              >
+                <button className="dropdown-toggle" type="button">
+                  Services
+                  <ChevronDown className="dropdown-icon" />
+                </button>
+
+                {dropdownOpen && (
+                  <div className="dropdown-menu">
+                    <Link to="/medical" className="dropdown-item">
+                      Medical
+                    </Link>
+                    <Link to="/specialty" className="dropdown-item">
+                      Specialties
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              <Link to="/signup" className="nav-link">
+                Booking
               </Link>
+            </nav>
+
+            {/* Search & Auth */}
+            <div className="header-actions">
+              <div className="auth-buttons">
+                <Link to="/login" className="btn-login">Log in</Link>
+                <Link to="/signup" className="btn-signup">Sign up</Link>
+              </div>
             </div>
           </div>
         </div>

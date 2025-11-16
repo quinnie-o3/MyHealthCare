@@ -1,71 +1,154 @@
+/* ===== CONTAINER CHUNG ===== */
 .signin-container {
   display: flex;
   min-height: 100vh;
   background: linear-gradient(to right, #ebf8ff, #e6fffa);
 }
 
+/* ===== PANEL TRÁI ===== */
 .signin-left {
-  flex: 1;
+  flex: 0 0 33.333%;
   background: linear-gradient(135deg, #2563eb, #14b8a6);
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 60px;
+  justify-content: center;   /* căn giữa theo chiều dọc */
+  padding: 80px 60px 40px;   /* top nhiều hơn để khối nội dung hơi cao lên */
 }
 
+/* Logo bên trái */
+.login-logo {
+  margin-bottom: 2rem;
+}
+
+/* Welcome Back to hơn, rõ hơn */
+.signin-left h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.signin-left p {
+  font-size: 1rem;
+  opacity: 0.95;
+}
+
+/* ===== PANEL PHẢI ===== */
 .signin-right {
-  flex: 1;
-  background: white;
+  flex: 0 0 66.667%;
+  background: transparent;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;      /* căn giữa theo chiều ngang */
   padding: 60px;
 }
 
+/* Gói các phần nội dung bên phải trong một cột hẹp (~420px) */
+.signin-right h2,
+.signin-right .signin-tabs,
+.signin-right .signin-form,
+.signin-right .signin-footer {
+  width: 100%;
+  max-width: 420px;        /* FORM GỌN LẠI Ở GIỮA */
+  margin: 0 auto;
+}
+
+/* Tiêu đề Sign In */
+.signin-right h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ===== TABS PHONE / EMAIL ===== */
 .signin-tabs {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
+  background: #e5e7eb;
+  padding: 4px;
+  border-radius: 999px;
 }
 
 .signin-tabs button {
   flex: 1;
-  padding: 10px;
-  border-radius: 8px;
+  padding: 10px 0;
+  border-radius: 999px;
   border: none;
   cursor: pointer;
-  background: #f3f4f6;
+  background: transparent;
+  color: #3e4148;
+  font-weight: 500;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 .signin-tabs button.active {
-  background: white;
+  background: #ffffff;
   color: #2563eb;
   border: 1px solid #2563eb;
 }
 
-.signin-form input {
-  width: 100%;
-  margin-bottom: 15px;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #d1d5db;
+/* ===== FORM INPUTS ===== */
+.signin-form {
+  margin-top: 10px;
 }
 
-.password-field {
+.signin-form input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #d1d5db;
+  background: transparent;
+  color: #000;
+  font-size: 0.95rem;
+}
+
+.signin-form input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.2);
+}
+
+/* Nhóm input có lỗi */
+.form-group {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+}
+
+.input-error {
+  border-color: #ef4444 !important;
+}
+
+/* Text lỗi */
+.error-text {
+  color: #ef4444;
+  font-size: 0.8rem;
+  margin-top: 2px;
+  margin-bottom: 6px;
+}
+
+/* ===== PASSWORD FIELD VỚI ICON MẮT ===== */
+.password-field {
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.password-field input {
+  padding-right: 40px; /* chừa chỗ cho icon mắt */
 }
 
 .password-field button {
   position: absolute;
   right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   background: none;
   border: none;
   cursor: pointer;
 }
 
+/* ===== NÚT SIGN IN ===== */
 .btn-signin {
   background: #2563eb;
   color: white;
@@ -74,17 +157,28 @@
   border: none;
   cursor: pointer;
   width: 100%;
+  margin-top: 10px;
+  font-weight: 500;
 }
 
 .btn-signin:hover {
   background: #1d4ed8;
 }
 
+.btn-signin:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3) !important;
+  border: none;
+}
+
+/* ===== FOOTER: LINK TỚI SIGN UP ===== */
 .signin-footer {
   text-align: center;
   margin-top: 15px;
+  font-size: 0.9rem;
 }
 
+/* ===== TRẠNG THÁI SIGNIN THÀNH CÔNG ===== */
 .signin-success {
   display: flex;
   justify-content: center;
@@ -115,4 +209,30 @@
   padding: 10px 20px;
   border-radius: 8px;
   text-decoration: none;
+}
+
+/* ===== RESPONSIVE: MOBILE STACK ===== */
+@media (max-width: 900px) {
+  .signin-container {
+    flex-direction: column;
+  }
+
+  .signin-left {
+    flex: 0 0 auto;
+    padding: 40px 24px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .signin-right {
+    flex: 1 1 auto;
+    padding: 24px;
+  }
+
+  .signin-right h2,
+  .signin-right .signin-tabs,
+  .signin-right .signin-form,
+  .signin-right .signin-footer {
+    max-width: 100%;
+  }
 }

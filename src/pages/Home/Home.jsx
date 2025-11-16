@@ -4,6 +4,7 @@ import Footer from "../../components/Footer";
 import Carousel from "./Carousel";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+
 import "./Home.css";
 
 const Home = () => {
@@ -102,9 +103,10 @@ const Home = () => {
                   <div className="service-content">
                     <h3 className="service-title">{service.title}</h3>
                     <p className="service-description">{service.description}</p>
-                    <a href="#" className="service-link">
+
+                    <Link to="/medical" className="service-link">
                       View Details <ArrowRight className="link-icon" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -112,7 +114,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Specialties Section */}
         <section id="specialties" className="specialties-section">
           <div className="section-container">
             <div className="section-header">
@@ -136,9 +137,10 @@ const Home = () => {
                     <div className="specialty-text">
                       <h3 className="specialty-title">{specialty.title}</h3>
                       <p className="specialty-description">{specialty.description}</p>
-                      <a href="#" className="specialty-link">
+
+                      <Link to="/specialty" className="specialty-link">
                         Read more <ArrowRight className="link-icon-sm" />
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -147,7 +149,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
         <section className="cta-section">
           <div className="cta-container">
             <h2 className="cta-title">Ready to Take Control of Your Health?</h2>
@@ -158,9 +159,9 @@ const Home = () => {
               <Link to="/signup" className="btn-cta-primary">
                 Get Started Now
               </Link>
-              <a href="#contact" className="btn-cta-secondary">
+              <Link to="https://mail.google.com/mail/u/0/#inbox?compose=CllgCJZWPGGStcCpZMsLnGMXvlBqrkMqmFZHkLrxCtcVQghSMSPGqFdjxrtcKpDDkJHgkwvGmvq" className="btn-cta-secondary">
                 Contact Us
-              </a>
+              </Link>
             </div>
           </div>
         </section>
