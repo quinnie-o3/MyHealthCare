@@ -1,8 +1,6 @@
-// src/Doctor/D-dashboard.jsx
 import React from "react";
-import "./Doctor-dashboard.css";
+import "./DoctorDashboard.css";
 import { useDoctorDashboard } from "./hooks/useDoctorDashboard";
-
 
 import DashboardHeader from "./components/DashboardHeader";
 import DashboardHero from "./components/DashboardHero";
@@ -12,7 +10,7 @@ import DashboardTransactions from "./components/DashboardTransactions";
 import DashboardCalendar from "./components/DashboardCalendar";
 import DashboardUpcoming from "./components/DashboardUpcoming";
 
-export default function DDashboard() {
+export default function DoctorDashboard() {
   const { greeting, stats, activity, transactions, calendar, upcoming } =
     useDoctorDashboard();
 

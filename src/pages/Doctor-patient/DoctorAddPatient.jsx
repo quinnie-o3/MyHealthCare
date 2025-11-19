@@ -1,10 +1,10 @@
 import React from "react";
 import "./DoctorPatient.css";
 
-import DoctorSidebar from "../components/DoctorSidebar/DoctorSidebar";
+import DoctorSidebar from "../../components/DoctorSidebar/DoctorSidebar";
 import BillTopBar from "../Doctor-billList/components/BillTopBar";
 import PatientForm from "./components/PatientForm";
-import { useDoctorPatientForm } from "./hook/useDoctorPatientForm";
+import { useDoctorPatientForm } from "./hooks/useDoctorPatientForm";
 
 export default function DoctorAddPatient() {
   const { formData, handleChange, handleSubmit, loading } =

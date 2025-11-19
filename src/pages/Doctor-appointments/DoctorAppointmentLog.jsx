@@ -1,11 +1,11 @@
 import React from "react";
 import "./DoctorAppointment.css";
 
-import DoctorSidebar from "../components/DoctorSidebar/DoctorSidebar";
+import DoctorSidebar from "../../components/DoctorSidebar/DoctorSidebar";
 import BillTopBar from "../Doctor-billList/components/BillTopBar";
 
 import AppointmentActivityTable from "./components/AppointmentActivityTable";
-import { useDoctorAppointmentList } from "./hook/useDoctorAppointmentList";
+import { useDoctorAppointmentList } from "./hooks/useDoctorAppointmentList";
 
 export default function DoctorAppointmentLog() {
   const { rows, search, setSearch } = useDoctorAppointmentList();

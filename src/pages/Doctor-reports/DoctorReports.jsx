@@ -2,7 +2,7 @@
 import React from "react";
 import "./DoctorReports.css";
 
-import DoctorSidebar from "../components/DoctorSidebar/DoctorSidebar";
+import DoctorSidebar from "../../components/DoctorSidebar/DoctorSidebar";
 import BillTopBar from "../Doctor-billList/components/BillTopBar";
 
 import ReportsStatsGrid from "./components/ReportsStatsGrid";
@@ -10,7 +10,7 @@ import ReportsTransactionsChart from "./components/ReportsTransactionsChart";
 import ReportsBillStatistics from "./components/ReportsBillStatistics";
 import ReportsPatientsChart from "./components/ReportsPatientsChart";
 import ReportsSalesAnalytics from "./components/ReportsSalesAnalytics";
-import { useDoctorReports } from "./hook/useDoctorReports";
+import { useDoctorReports } from "./hooks/useDoctorReports";
 
 export default function DoctorReports() {
   const { period, setPeriod, stats } = useDoctorReports();

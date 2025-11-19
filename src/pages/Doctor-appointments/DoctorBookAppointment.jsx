@@ -1,11 +1,11 @@
 import React from "react";
 import "./DoctorAppointment.css";
 
-import DoctorSidebar from "../components/DoctorSidebar/DoctorSidebar";
+import DoctorSidebar from "../../components/DoctorSidebar/DoctorSidebar";
 import BillTopBar from "../Doctor-billList/components/BillTopBar";
 
 import AppointmentForm from "./components/AppointmentForm";
-import { useDoctorBookAppointment } from "./hook/useDoctorBookAppointment";
+import { useDoctorBookAppointment } from "./hooks/useDoctorBookAppointment";
 
 export default function DoctorBookAppointment() {
   const { formData, handleChange, handleSubmit, loading } =

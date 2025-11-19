@@ -1,8 +1,8 @@
 import React from "react";
 import "./DoctorBillList.css";
-import { useDoctorBillList } from "./hook/useDoctorBillList";
+import { useDoctorBillList } from "./hooks/useDoctorBillList";
 
-import DoctorSidebar from "../components/DoctorSidebar/DoctorSidebar";
+import DoctorSidebar from "../../components/DoctorSidebar/DoctorSidebar";
 import BillTopBar from "./components/BillTopBar";
 import BillWeeklyActivity from "./components/BillWeeklyActivity";
 import BillEarnings from "./components/BillEarnings";

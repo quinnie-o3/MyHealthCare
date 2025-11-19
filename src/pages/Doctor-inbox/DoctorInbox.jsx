@@ -1,14 +1,12 @@
 // src/Doctor-inbox/DoctorInbox.jsx
 import React from "react";
 import "./DoctorInbox.css";
-
-import DoctorSidebar from "../components/DoctorSidebar/DoctorSidebar";
 import BillTopBar from "../Doctor-billList/components/BillTopBar";
 
-import InboxSidebar from "./components/InboxSidebar";
+import DoctorSidebar from "../../components/DoctorSidebar/DoctorSidebar";
 import InboxList from "./components/InboxList";
 import InboxConversation from "./components/InboxConversation";
-import { useDoctorInbox } from "./hook/useDoctorInbox";
+import { useDoctorInbox } from "./hooks/useDoctorInbox";
 
 export default function DoctorInbox() {
   const {

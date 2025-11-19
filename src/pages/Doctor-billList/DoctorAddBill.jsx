@@ -2,10 +2,10 @@
 import React from "react";
 import "./DoctorBillList.css"; // dùng chung CSS transactions
 
-import DoctorSidebar from "../components/DoctorSidebar/DoctorSidebar";
+import DoctorSidebar from "../../components/DoctorSidebar/DoctorSidebar";
 import BillTopBar from "./components/BillTopBar";
 import AddBillForm from "./components/AddBillForm";
-import { useDoctorAddBill } from "./hook/useDoctorAddBill";
+import { useDoctorAddBill } from "./hooks/useDoctorAddBill";
 
 export default function DoctorAddBill() {
   const { formData, handleChange, handleSubmit, loading } =

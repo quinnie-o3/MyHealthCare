@@ -2,7 +2,7 @@
 import React from "react";
 import "./DoctorBillList.css";
 
-import DoctorSidebar from "../components/DoctorSidebar/DoctorSidebar";
+import DoctorSidebar from "../../components/DoctorSidebar/DoctorSidebar";
 import BillTopBar from "./components/BillTopBar";
 import InvoiceContent from "./components/InvoiceContent";
 

@@ -1,10 +1,10 @@
 import React from "react";
 import "./DoctorPatient.css";
 
-import DoctorSidebar from "../components/DoctorSidebar/DoctorSidebar";
+import DoctorSidebar from "../../components/DoctorSidebar/DoctorSidebar";
 import BillTopBar from "../Doctor-billList/components/BillTopBar";
 import PatientListTable from "./components/PatientListTable";
-import { useDoctorPatientList } from "./hook/useDoctorPatientList";
+import { useDoctorPatientList } from "./hooks/useDoctorPatientList";
 
 export default function DoctorPatientList() {
   const { patients } = useDoctorPatientList();
