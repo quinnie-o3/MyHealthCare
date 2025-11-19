@@ -6,21 +6,38 @@ import Signup from "./pages/Signup/Signup";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import "./App.css";
 import Medical from "./pages/Services/Medical";
-import DoctorDashboard from "./Doctor-dashboard/Doctor-dashboard";
-import DoctorBillList from "./Doctor-billList/DoctorBillList";
-import DoctorAddBill from "./Doctor-billList/DoctorAddBill";
-import DoctorInvoice from "./Doctor-billList/DoctorInvoice";
-import DoctorPatientList from "./Doctor-patient/DoctorPatientList";
-import DoctorAddPatient from "./Doctor-patient/DoctorAddPatient";
-import DoctorEditPatient from "./Doctor-patient/DoctorEditPatient";
-import DoctorAppointmentLog from "./Doctor-appointments/DoctorAppointmentLog";
-import DoctorBookAppointment from "./Doctor-appointments/DoctorBookAppointment";
-import DoctorCalendar from "./Doctor-calendar/DoctorCalendar";
-import DoctorInbox from "./Doctor-inbox/DoctorInbox";
+import DoctorDashboard from "./Doctor-dashboard/DoctorDashboard";
+import Medical from "./pages/Services/Medical";
+
+// DASHBOARD
+import DoctorDashBoard from "./pages/Doctor-dashboard/DoctorDashBoard";
+
+// BILL LIST
+import DoctorBillList from "./pages/Doctor-billList/DoctorBillList";
+import DoctorAddBill from "./pages/Doctor-billList/DoctorAddBill";
+import DoctorInvoice from "./pages/Doctor-billList/DoctorInvoice";
+
+// PATIENTS
+import DoctorPatientList from "./pages/Doctor-patient/DoctorPatientList";
+import DoctorAddPatient from "./pages/Doctor-patient/DoctorAddPatient";
+import DoctorEditPatient from "./pages/Doctor-patient/DoctorEditPatient";
+
+// CALENDAR
+import DoctorCalendar from "./pages/Doctor-calendar/DoctorCalendar";
+
+// INBOX
+import DoctorInbox from "./pages/Doctor-inbox/DoctorInbox";
+
+// SETTINGS
 import DoctorProfile from "./pages/Doctor-settings/DoctorProfile";
 import DoctorSettings from "./pages/Doctor-settings/DoctorSettings";
+
+// PRESCRIPTIONS
 import DoctorPrescriptionList from "./pages/Doctor-prescriptions/DoctorPrescriptionList";
 import DoctorAddPrescription from "./pages/Doctor-prescriptions/DoctorAddPrescription";
+
+// DRUGS & TESTS
+import DoctorDrugsTests from "./pages/Doctor-drugsTests/DoctorDrugsTests";
 
 
 const App = () => {
