@@ -1,0 +1,311 @@
+/* tái sử dụng layout bill-page, bill-main, bill-content */
+@import "../Doctor-billList/DoctorBillList.css";
+
+/* ------ LIST ------ */
+
+.presc-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.presc-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.presc-toolbar-right {
+  flex: 1;
+  margin-left: 30px;
+}
+
+.presc-search {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  font-size: 12px;
+}
+
+.presc-search input {
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.presc-filter-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 16px;
+  font-size: 12px;
+}
+
+.presc-filter-btn {
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  padding: 6px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.presc-filter-pill {
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.presc-reset {
+  border: none;
+  background: none;
+  color: #ef4444;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.presc-table-card {
+  margin-top: 8px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 16px 18px 24px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+  position: relative;
+}
+
+.presc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.presc-table th {
+  text-align: left;
+  padding: 8px 4px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.presc-table td {
+  padding: 10px 4px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.presc-cell-patient {
+  width: 230px;
+}
+
+.presc-patient {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.presc-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: #e5f3ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.presc-category-pill {
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 11px;
+}
+
+.presc-category-pill--syrup {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+.presc-category-pill--drops {
+  background: #fce7f3;
+  color: #be185d;
+}
+.presc-category-pill--tablets {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.presc-notes {
+  max-width: 200px;
+  color: #6b7280;
+}
+
+.presc-actions .icon-btn {
+  margin-right: 4px;
+}
+
+.presc-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.presc-pagination button {
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
+.presc-fab {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: none;
+  background: #00b894;
+  color: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* ------ CREATE ------ */
+
+.presc-create-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 22px 24px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+.presc-create-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.presc-create-header-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 16px;
+}
+
+.presc-field label {
+  display: block;
+  font-size: 13px;
+  color: #4b5563;
+  margin-bottom: 6px;
+}
+
+.required {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+.presc-input {
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 0 12px;
+  font-size: 13px;
+  background: #f9fafb;
+}
+
+.presc-input--select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.presc-input--green {
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+}
+
+.presc-input--error {
+  border-color: #fecaca;
+}
+
+.presc-select-arrow {
+  font-size: 10px;
+  color: #9ca3af;
+}
+
+.presc-section {
+  margin-top: 18px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.presc-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.presc-drug-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px 20px;
+}
+
+.presc-field--wide {
+  grid-column: span 2;
+}
+
+.presc-field--notes {
+  margin-top: 14px;
+}
+
+.presc-input--notes {
+  height: 90px;
+  padding-top: 8px;
+  resize: vertical;
+}
+
+.presc-field--test {
+  max-width: 260px;
+}
+
+.presc-create-footer {
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.presc-confirm-btn {
+  border: none;
+  border-radius: 999px;
+  background: #00b894;
+  color: #ffffff;
+  padding: 10px 32px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* responsive nhẹ */
+@media (max-width: 1024px) {
+  .presc-drug-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .presc-create-header-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

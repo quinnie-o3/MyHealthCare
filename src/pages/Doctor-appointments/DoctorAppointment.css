@@ -1,0 +1,232 @@
+/* Tái dùng layout chung (bill-page, bill-main, topbar, filter-btn, reset-btn, icon-btn, pager-btn, ...) */
+@import "../Doctor-billList/DoctorBillList.css";
+
+/* ---------- ACTIVITY LOG ---------- */
+
+.appt-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 22px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+.appt-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.appt-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.appt-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* search input */
+.appt-search-input {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 260px;
+  height: 34px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.appt-search-input input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 12px;
+}
+
+/* nút + */
+.appt-add-btn {
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: #00b894;
+  color: #ffffff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.appt-filters {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* bảng */
+.appt-table-wrapper {
+  margin-top: 8px;
+}
+
+.appt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.appt-table th,
+.appt-table td {
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.appt-table thead {
+  background: #f9fafb;
+}
+
+.appt-patient-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.appt-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+}
+
+.appt-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.appt-footer {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.appt-pagination {
+  display: flex;
+  gap: 4px;
+}
+
+/* ---------- BOOK APPOINTMENT ---------- */
+
+.appt-form-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 22px 26px 26px;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+.appt-form {
+  margin-top: 8px;
+}
+
+.appt-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 40px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.appt-field label {
+  display: block;
+  font-size: 13px;
+  color: #4b5563;
+  margin-bottom: 6px;
+}
+
+.asterisk {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+.appt-input {
+  width: 100%;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 0 12px;
+  font-size: 13px;
+  background: #f9fafb;
+}
+
+.appt-input--readonly {
+  color: #9ca3af;
+}
+
+.appt-input--select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.appt-input--error {
+  border-color: #f97373;
+}
+
+.appt-input--success {
+  border-color: #22c55e;
+  background: #ecfdf5;
+}
+
+.appt-select-arrow {
+  font-size: 9px;
+  color: #9ca3af;
+}
+
+.appt-status-text {
+  color: #facc15;
+  font-weight: 600;
+}
+
+.appt-field--full {
+  grid-column: 1 / -1;
+}
+
+.appt-textarea {
+  width: 100%;
+  min-height: 90px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 12px;
+  font-size: 13px;
+  background: #f9fafb;
+  resize: vertical;
+}
+
+.appt-form-footer {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.appt-submit-btn {
+  border: none;
+  border-radius: 999px;
+  background: #00b894;
+  color: #ffffff;
+  padding: 10px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.appt-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
