@@ -1,161 +1,172 @@
-// 
-// 
-
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import React, { useRef } from "react";
-import Slider from "react-slick";
-import { Link } from "react-router-dom";
-import Carousel from "../../components/Carousel";
-
+import React from "react";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import "./Medical.css";
 
-// const Medical = () => {
-//   const carouselSlides = [
-//     { image: "homePage_images/whole-body-thumb.jpg", title: "General Health Check & Cancer Screening" },
-//     { image: "homePage_images/advancedCheckUp.png", title: "Advanced Health Checkup" },
-//     { image: "homePage_images/healthcheckup.jpeg", title: "Basic Health Checkup" },
-//     { image: "homePage_images/specifiedCheckUp.png", title: "Specialized Health Checkup" },
-//     { image: "homePage_images/radiologist.jpg", title: "Imaging Diagnosis" },
-//     { image: "homePage_images/the-basics-of-bone-joint-care-web.jpg", title: "Bone & Joint Care" },
-//     { image: "homePage_images/Pediatrics.jpeg", title: "Pediatrics" },
-//     { image: "homePage_images/OB-GYN.jpg", title: "Obstetrics & Gynecology" },
-//     { image: "homePage_images/bethesda-naval-medical-center.jpg", title: "ENT - Audiology" },
-//   ];
-
-//   const sectionRefs = useRef([]);
-
-//   const scrollToService = (index) => {
-//     sectionRefs.current[index]?.scrollIntoView({ behavior: "smooth", block: "start" });
-//   };
-
-//   return (
-//     <div className="medical-page">
-//       <Header />
-
-//       <section className="carousel-container">
-//         <h1 className="carousel-title">Our Medical Services</h1>
-//         <Carousel 
-//           slides={carouselSlides} 
-//           height="60vh"
-//           autoPlayInterval={4000}
-//           showNav={true}
-//           showText={true}
-//           showDots={true}
-//         />
-//       </section>
-
-//       <section className="medical-details">
-//         {carouselSlides.map((service, index) => (
-//           <div
-//             key={index}
-//             ref={(el) => (sectionRefs.current[index] = el)}
-//             className="service-detail"
-//           >
-//             <h2>{service.title}</h2>
-//             <p>Thông tin chi tiết của {service.title}...</p>
-//             <Link to="/signup" className="service-link">
-//               Book Appointment <ArrowRight className="link-icon" />
-//             </Link>
-//           </div>
-//         ))}
-//       </section>
-
-//       <Footer />
-//     </div>
-//   );
-// };
-
-// export default Medical;
-
-const Medical = () => {
-  // Dữ liệu của bạn (đã có description)
-  const carouselSlides = [
+const Services = () => {
+  const services = [
     {
-      image: "homePage_images/whole-body-thumb.jpg",
+      image: "/homePage_images/whole-body-thumb.jpg",
       title: "General Health Check & Cancer Screening",
-      description: "A comprehensive package designed to assess your overall health and detect potential cancer risks early, providing peace of mind and timely intervention."
+      description: "Comprehensive health assessment and early cancer detection with advanced screening technologies.",
+      details: "Our general health check includes complete blood count, metabolic panel, cancer markers, and imaging studies to detect potential health issues early."
     },
     {
-      image: "homePage_images/advancedCheckUp.png",
+      image: "/homePage_images/advancedCheckUp.png",
       title: "Advanced Health Checkup",
-      description: "Utilizes state-of-the-art diagnostics for an in-depth analysis of your health, focusing on complex risk factors and detailed bodily functions."
+      description: "In-depth medical examination with advanced diagnostics and specialized testing.",
+      details: "Includes all basic tests plus cardiac stress test, advanced imaging (CT/MRI), endoscopy, and consultation with specialists."
     },
     {
-      image: "homePage_images/healthcheckup.jpeg",
+      image: "/homePage_images/healthcheckup.jpeg",
       title: "Basic Health Checkup",
-      description: "Our essential wellness package covers all fundamental health markers, perfect for routine checkups and maintaining your baseline health."
+      description: "Essential health screening for preventive care and routine monitoring.",
+      details: "Perfect for annual checkups including vital signs, basic blood tests, urinalysis, chest X-ray, and doctor consultation."
     },
     {
-      image: "homePage_images/specifiedCheckUp.png",
+      image: "/homePage_images/specifiedCheckUp.png",
       title: "Specialized Health Checkup",
-      description: "Tailored checkups focusing on specific health concerns, such as cardiovascular health, diabetes management, or digestive disorders."
+      description: "Targeted health assessments for specific conditions and organ systems.",
+      details: "Customized packages for cardiac, diabetes, women's health, men's health, bone health, and other specialized screenings."
     },
     {
-      image: "homePage_images/radiologist.jpg",
+      image: "/homePage_images/radiologist.jpg",
       title: "Imaging Diagnosis",
-      description: "We provide high-precision diagnostic imaging services, including MRI, CT, X-Ray, and Ultrasound, for accurate and fast diagnoses."
+      description: "Advanced imaging technology for accurate diagnosis including X-ray, CT, MRI, and Ultrasound.",
+      details: "State-of-the-art imaging equipment operated by experienced radiologists for precise diagnostic results."
     },
     {
-      image: "homePage_images/the-basics-of-bone-joint-care-web.jpg",
+      image: "/homePage_images/the-basics-of-bone-joint-care-web.jpg",
       title: "Bone & Joint Care",
-      description: "Our orthopedic department offers comprehensive care for all bone and joint conditions, from sports injuries to chronic arthritis."
+      description: "Orthopedic care and joint health specialists for all musculoskeletal conditions.",
+      details: "Treatment for arthritis, sports injuries, fractures, joint replacement, and rehabilitation services."
     },
     {
-      image: "homePage_images/Pediatrics.jpeg",
+      image: "/homePage_images/Pediatrics.jpeg",
       title: "Pediatrics",
-      description: "Dedicated, compassionate care for your children, from infancy through adolescence, ensuring their healthy growth and development."
+      description: "Comprehensive care for infants, children, and adolescents with experienced pediatricians.",
+      details: "Well-child visits, vaccinations, growth monitoring, developmental assessments, and treatment of childhood illnesses."
     },
     {
-      image: "homePage_images/OB-GYN.jpg",
+      image: "/homePage_images/OB-GYN.jpg",
       title: "Obstetrics & Gynecology",
-      description: "Complete care for women's health, offering services in routine gynecology, prenatal care, childbirth, and specialized treatments."
+      description: "Women's health and reproductive care with compassionate specialists.",
+      details: "Prenatal care, delivery services, gynecological exams, family planning, and menopause management."
     },
     {
-      image: "homePage_images/bethesda-naval-medical-center.jpg",
+      image: "/homePage_images/bethesda-naval-medical-center.jpg",
       title: "ENT - Audiology",
-      description: "Expert diagnosis and treatment for conditions of the Ear, Nose, and Throat, combined with comprehensive audiology services for hearing health."
+      description: "Ear, nose, throat, and hearing specialists for all ENT conditions.",
+      details: "Treatment for hearing loss, sinus problems, throat disorders, balance issues, and hearing aid services."
+    }
+  ];
+
+  const serviceCategories = [
+    {
+      name: "Preventive Care",
+      description: "Regular checkups and screenings to maintain optimal health",
+      icon: "🛡️"
     },
+    {
+      name: "Diagnostic Services",
+      description: "Advanced testing and imaging for accurate diagnosis",
+      icon: "🔬"
+    },
+    {
+      name: "Specialized Care",
+      description: "Expert treatment for specific conditions and organ systems",
+      icon: "⚕️"
+    },
+    {
+      name: "Emergency Services",
+      description: "24/7 emergency care for urgent medical needs",
+      icon: "🚑"
+    }
   ];
 
   return (
-    <div className="medical-page">
+    <div className="services-page">
       <Header />
 
-      {/* Main content section */}
-      <main className="medical-content-container">
-        {/* Tiêu đề trang */}
-        <div className="section-header">
-          <h1 className="section-title">Our Medical Services</h1>
-          <p className="section-subtitle">
-            Comprehensive care across all specialties, available when you need it.
-          </p>
-        </div>
+      <main className="services-main">
+        {/* Hero Section */}
+        <section className="services-hero">
+          <div className="hero-content">
+            <h1>Our Medical Services</h1>
+            <p>
+              Comprehensive healthcare solutions delivered by experienced professionals
+              using cutting-edge technology
+            </p>
+          </div>
+        </section>
 
-        {/* Lưới hiển thị các dịch vụ */}
-        <div className="services-grid">
-          {carouselSlides.map((service, index) => (
-            <div key={index} className="service-card">
-              <div className="service-image-wrapper">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="service-image"
-                />
-              </div>
-              <div className="service-content">
-                <h2 className="service-title">{service.title}</h2>
-                <p className="service-description">{service.description}</p>
-                <Link to="/signup" className="service-link">
-                  Book Appointment <ArrowRight className="link-icon" />
-                </Link>
-              </div>
+        {/* Service Categories */}
+        <section className="categories-section">
+          <div className="section-container">
+            <h2 className="section-title">Service Categories</h2>
+            <div className="categories-grid">
+              {serviceCategories.map((category, index) => (
+                <div key={index} className="category-card">
+                  <div className="category-icon">{category.icon}</div>
+                  <h3>{category.name}</h3>
+                  <p>{category.description}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        </section>
+
+        {/* All Services */}
+        <section className="all-services-section">
+          <div className="section-container">
+            <div className="section-header">
+              <h2 className="section-title">All Our Services</h2>
+              <p className="section-subtitle">
+                Comprehensive healthcare services tailored to your needs
+              </p>
+            </div>
+
+            <div className="services-grid">
+              {services.map((service, index) => (
+                <div key={index} className="service-card">
+                  <div className="service-image-wrapper">
+                    <img 
+                      src={service.image} 
+                      alt={service.title}
+                      className="service-image"
+                    />
+                  </div>
+                  <div className="service-content">
+                    <h3 className="service-title">{service.title}</h3>
+                    <p className="service-description">{service.description}</p>
+                    <p className="service-details">{service.details}</p>
+                    <Link to="/signup" className="service-link">
+                      Book Appointment <ArrowRight className="link-icon" />
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="services-cta">
+          <div className="cta-content">
+            <h2>Need Help Choosing the Right Service?</h2>
+            <p>Our healthcare advisors are here to guide you</p>
+            <div className="cta-buttons">
+              <Link to="/signup" className="btn-primary">
+                Schedule Consultation
+              </Link>
+              <a href="tel:+15551234567" className="btn-secondary">
+                Call Us Now
+              </a>
+            </div>
+          </div>
+        </section>
       </main>
 
       <Footer />
@@ -163,4 +174,4 @@ const Medical = () => {
   );
 };
 
-export default Medical;
+export default Services;

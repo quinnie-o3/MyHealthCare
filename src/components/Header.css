@@ -1,9 +1,13 @@
 .header {
-  background-color: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   position: sticky;
   top: 0;
   z-index: 50;
+  transition: all 0.3s ease;
 }
 
 .header-container {
@@ -39,7 +43,7 @@
 }
 
 .nav-link:hover {
-  color: #2563eb;
+  color: #BCDFF1;
 }
 
 .dropdown {
@@ -60,7 +64,7 @@
 }
 
 .dropdown-toggle:hover {
-  color: #2563eb;
+  color: #BCDFF1;
 }
 
 .dropdown-icon {
@@ -74,11 +78,14 @@
   left: 0;
   margin-top: 0.5rem;
   width: 12rem;
-  background-color: white;
-  border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  border: 1px solid #e5e7eb;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 0.5rem 0;
+  overflow: hidden;
 }
 
 .dropdown-item {
@@ -90,8 +97,8 @@
 }
 
 .dropdown-item:hover {
-  background-color: #eff6ff;
-  color: #2563eb;
+  background-color: #E8F4F8;
+  color: #BCDFF1;
 }
 
 .header-actions {
@@ -104,9 +111,18 @@
   display: none;
   align-items: center;
   gap: 0.5rem;
-  background-color: #f3f4f6;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.search-box:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(188, 223, 241, 0.5);
 }
 
 @media (min-width: 1024px) {
@@ -136,28 +152,34 @@
 }
 
 .btn-login {
-  padding: 0.5rem 1rem;
-  color: #2563eb;
+  padding: 0.5rem 1.5rem;
+  color: #BCDFF1;
   font-weight: 500;
   text-decoration: none;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s;
+  border-radius: 2rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
 }
 
 .btn-login:hover {
-  background-color: #eff6ff;
+  background-color: #E8F4F8;
+  color: #9BC5E0;
 }
 
 .btn-signup {
-  padding: 0.5rem 1rem;
-  background-color: #2563eb;
-  color: white;
+  padding: 0.5rem 1.5rem;
+  background-color: #BCDFF1;
+  color: #1f2937;
   font-weight: 500;
   text-decoration: none;
-  border-radius: 0.5rem;
-  transition: background-color 0.2s;
+  border-radius: 2rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
 }
 
 .btn-signup:hover {
-  background-color: #1d4ed8;
+  background-color: #9BC5E0;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(188, 223, 241, 0.4);
 }
