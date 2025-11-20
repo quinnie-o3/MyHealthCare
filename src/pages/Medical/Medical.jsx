@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "../../components/Header";
@@ -63,6 +63,21 @@ const Services = () => {
     }
   ];
 
+  const checkupPackages = services.slice(0, 4);
+  const specialties = services.slice(4);
+  const specialtiesRef = useRef(null);
+
+  const scrollSpecialties = (direction) => {
+    const container = specialtiesRef.current;
+    if (!container) return;
+
+    const scrollAmount = container.clientWidth * 0.8;
+    container.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth"
+    });
+  };
+
   const serviceCategories = [
     {
       name: "Preventive Care",
@@ -122,32 +137,94 @@ const Services = () => {
         <section className="all-services-section">
           <div className="section-container">
             <div className="section-header">
-              <h2 className="section-title">All Our Services</h2>
+              <h2 className="section-title">Comprehensive Medical Services</h2>
               <p className="section-subtitle">
                 Comprehensive healthcare services tailored to your needs
               </p>
             </div>
 
-            <div className="services-grid">
-              {services.map((service, index) => (
-                <div key={index} className="service-card">
-                  <div className="service-image-wrapper">
-                    <img 
-                      src={service.image} 
-                      alt={service.title}
-                      className="service-image"
-                    />
-                  </div>
-                  <div className="service-content">
-                    <h3 className="service-title">{service.title}</h3>
-                    <p className="service-description">{service.description}</p>
-                    <p className="service-details">{service.details}</p>
-                    <Link to="/signup" className="service-link">
-                      Book Appointment <ArrowRight className="link-icon" />
-                    </Link>
-                  </div>
+            <div className="checkup-section">
+              <div className="subsection-header">
+                <div>
+                  <h3 className="subsection-title">Health Checkup Packages</h3>
+
                 </div>
-              ))}
+              </div>
+
+              <div className="services-grid checkup-grid">
+                {checkupPackages.map((service, index) => (
+                  <div key={index} className="service-card">
+                    <div className="service-image-wrapper">
+                      <img 
+                        src={service.image} 
+                        alt={service.title}
+                        className="service-image"
+                      />
+                    </div>
+                    <div className="service-content">
+                      <h3 className="service-title">{service.title}</h3>
+                      <p className="service-description">{service.description}</p>
+                      <p className="service-details">{service.details}</p>
+                      <Link to="/signup" className="service-link">
+                        Book Appointment <ArrowRight className="link-icon" />
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="specialties-section">
+              <div className="specialties-top">
+                <div>
+                  <h3 className="subsection-title">Medical Specialties</h3>
+                  <p className="subsection-subtitle">
+                    Explore specialty services with horizontal scroll
+                  </p>
+                </div>
+                <div className="slider-controls">
+                  <button 
+                    className="slider-btn" 
+                    type="button" 
+                    onClick={() => scrollSpecialties("left")}
+                    aria-label="Scroll specialties left"
+                  >
+                    &lt;
+                  </button>
+                  <button 
+                    className="slider-btn" 
+                    type="button" 
+                    onClick={() => scrollSpecialties("right")}
+                    aria-label="Scroll specialties right"
+                  >
+                    &gt;
+                  </button>
+                </div>
+              </div>
+
+              <div className="specialties-track-wrapper">
+                <div className="specialties-track" ref={specialtiesRef}>
+                  {specialties.map((service, index) => (
+                    <div key={index} className="service-card specialty-card">
+                      <div className="service-image-wrapper">
+                        <img 
+                          src={service.image} 
+                          alt={service.title}
+                          className="service-image"
+                        />
+                      </div>
+                      <div className="service-content">
+                        <h3 className="service-title">{service.title}</h3>
+                        <p className="service-description">{service.description}</p>
+                        <p className="service-details">{service.details}</p>
+                        <Link to="/signup" className="service-link">
+                          Book Appointment <ArrowRight className="link-icon" />
+                        </Link>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -158,7 +235,7 @@ const Services = () => {
             <h2>Need Help Choosing the Right Service?</h2>
             <p>Our healthcare advisors are here to guide you</p>
             <div className="cta-buttons">
-              <Link to="/signup" className="btn-primary">
+              <Link to="/signup" className="btn-secondary">
                 Schedule Consultation
               </Link>
               <a href="tel:+15551234567" className="btn-secondary">

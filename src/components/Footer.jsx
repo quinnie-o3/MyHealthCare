@@ -39,14 +39,13 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div className="footer-section">
             <h4 className="footer-title">Quick Links</h4>
             <ul className="footer-list">
-              <li><Link to="/" className="footer-link">Home</Link></li>
-              <li><Link to="/about" className="footer-link">About Us</Link></li>
-              <li><Link to="/medical" className="footer-link">Services</Link></li>
-              <li><Link to="/booking" className="footer-link">Booking</Link></li>
+              <li><Link to="#" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Home</Link></li>
+              <li><Link to="/about" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>About Us</Link></li>
+              <li><Link to="/medical" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Services</Link></li>
+              <li><Link to="/signup" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Booking</Link></li>
             </ul>
           </div>
 
@@ -54,10 +53,13 @@ const Footer = () => {
           <div className="footer-section">
             <h4 className="footer-title">Services</h4>
             <ul className="footer-list">
-              <li><a href="#" className="footer-link">General Medicine</a></li>
-              <li><a href="#" className="footer-link">Pediatrics</a></li>
-              <li><a href="#" className="footer-link">Cardiology</a></li>
-              <li><a href="#" className="footer-link">Dermatology</a></li>
+              <li><a href="/medical" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>General Health Check</a></li>
+              <li><a href="/medical" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Diagnostic Services</a></li>
+              <li><a href="/medical" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Bone & Joint Care</a></li>
+              <li><a href="/medical" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Pediatrics</a></li>
+              <li><a href="/medical" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Obstetrics & Gynecology</a></li>
+              <li><a href="/medical" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>Audiology</a></li>
+
             </ul>
           </div>
 
@@ -71,11 +73,11 @@ const Footer = () => {
               </li>
               <li className="contact-item">
                 <Mail className="contact-icon" />
-                <span className="contact-text">info@myhealthcare.com</span>
+                <Link to= 'https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSKhbtspNvxjxFRBgRnQlPBgLQvpvwrTwSHXpnBGClSbzbgCqdTCTKbFtNzDCqPRrdMFmLKp' target="_blank" rel="noopener noreferrer" className="contact-text">myhealthcare@gmail.com</Link>
               </li>
               <li className="contact-item">
                 <MapPin className="contact-icon" />
-                <span className="contact-text">123 Health St, Medical City</span>
+                <Link to='https://www.google.com/maps/place/University+of+Information+Technology+-+VNUHCM/@10.8700142,106.8004792,814m/data=!3m2!1e3!4b1!4m6!3m5!1s0x317527587e9ad5bf:0xafa66f9c8be3c91!8m2!3d10.8700089!4d106.8030541!16s%2Fm%2F02qqlmm?entry=ttu&g_ep=EgoyMDI1MTExOC4wIKXMDSoASAFQAw%3D%3D' target="_blank" rel="noopener noreferrer" className="contact-text">6 Han Thuyen, Thu Duc</Link>
               </li>
             </ul>
           </div>

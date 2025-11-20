@@ -236,3 +236,7 @@
   width: 2rem;
   border-radius: 0.375rem;
 }
+
+.slide-subtitle {
+  text-align: center;
+}

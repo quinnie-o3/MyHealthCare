@@ -121,10 +121,20 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2rem;
+  align-items: stretch;
+  width: 280px;
+}
+
+.checkup-grid {
+  grid-auto-rows: 1fr;
 }
 
 .checkup-section {
   margin-bottom: 3rem;
+}
+
+.checkup-grid > .service-card {
+  height: 640px;
 }
 
 .subsection-header {
@@ -154,6 +164,7 @@
   border: 1px solid #e5e7eb;
   display: flex;
   flex-direction: column;
+  min-width: 280px;
 }
 
 .service-card:hover {
@@ -344,15 +355,17 @@
 }
 
 .btn-primary {
-  background-color: white;
-  color: #2563eb;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  box-shadow: none;
 }
 
 .btn-primary:hover {
-  background-color: #f3f4f6;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.12);
+  color: white;
+  transform: none;
+  box-shadow: none;
 }
 
 .btn-secondary {
@@ -362,8 +375,10 @@
 }
 
 .btn-secondary:hover {
-  background-color: white;
-  color: #2563eb;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: white;
+  transform: none;
+  box-shadow: none;
 }
 
 /* Responsive */

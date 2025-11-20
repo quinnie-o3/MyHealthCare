@@ -48,7 +48,7 @@ export default function Carousel() {
 
       {/* Fixed Button */}
       <div className="slide-button-wrapper">
-        <Link to="/booking" className="slide-button">
+        <Link to="/signup" className="slide-button">
           Book an Appointment
         </Link>
       </div>

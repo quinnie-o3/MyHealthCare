@@ -23,38 +23,24 @@ const Header = () => {
             <Link to="/about" className="nav-link">
               About us
             </Link>
-            <div className="dropdown">
-              <button
-                onClick={() => setDropdownOpen(!dropdownOpen)}
-                className="dropdown-toggle"
-              >
-                Medical Services
-                <ChevronDown className="dropdown-icon" />
-              </button>
-              
-              {dropdownOpen && (
-                <div className="dropdown-menu">
-                  <Link to="/medical" className="dropdown-item">
-                    Medical
-                  </Link>
-                </div>
-              )}
-            </div>
-            <Link to="/booking" className="nav-link">
+            <Link to="/medical" className="nav-link">
+              Medical services
+            </Link>
+            <Link to="/signup" className="nav-link">
               Booking
             </Link>
           </nav>
 
           {/* Search & Auth */}
           <div className="header-actions">
-            <div className="search-box">
+            {/* <div className="search-box">
               <Search className="search-icon" />
               <input
                 type="text"
                 placeholder="Search..."
                 className="search-input"
               />
-            </div>
+            </div> */}
             
             <div className="auth-buttons">
               <Link to="/login" className="btn-login">

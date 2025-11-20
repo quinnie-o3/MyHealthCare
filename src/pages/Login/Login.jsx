@@ -5,6 +5,7 @@ import LoginHeader from './components/LoginHeader';
 import LoginMessages from './components/LoginMessages';
 import LoginForm from './components/LoginForm';
 import LoginFooter from './components/LoginFooter';
+import Logo from '../../components/Logo/Logo'
 
 export default function LoginPage() {
   const {
