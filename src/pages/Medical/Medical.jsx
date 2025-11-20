@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import "./Medical.css";
+import Dashboard from "../Doctor-dashboard/DoctorDashboard";
 
 const Services = () => {
   const services = [
@@ -165,7 +166,7 @@ const Services = () => {
                       <h3 className="service-title">{service.title}</h3>
                       <p className="service-description">{service.description}</p>
                       <p className="service-details">{service.details}</p>
-                      <Link to="/signup" className="service-link">
+                      <Link to="/login" className="service-link">
                         Book Appointment <ArrowRight className="link-icon" />
                       </Link>
                     </div>
@@ -217,7 +218,7 @@ const Services = () => {
                         <h3 className="service-title">{service.title}</h3>
                         <p className="service-description">{service.description}</p>
                         <p className="service-details">{service.details}</p>
-                        <Link to="/signup" className="service-link">
+                        <Link to="/login" className="service-link">
                           Book Appointment <ArrowRight className="link-icon" />
                         </Link>
                       </div>
@@ -235,12 +236,12 @@ const Services = () => {
             <h2>Need Help Choosing the Right Service?</h2>
             <p>Our healthcare advisors are here to guide you</p>
             <div className="cta-buttons">
-              <Link to="/signup" className="btn-secondary">
+              <Link to="/login" className="btn-secondary">
                 Schedule Consultation
               </Link>
-              <a href="tel:+15551234567" className="btn-secondary">
+              <Link to='#' className="btn-secondary">
                 Call Us Now
-              </a>
+              </Link>
             </div>
           </div>
         </section>
