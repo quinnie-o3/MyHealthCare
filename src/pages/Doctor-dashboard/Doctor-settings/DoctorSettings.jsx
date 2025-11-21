@@ -1,7 +1,7 @@
 import React from "react";
 import "./DoctorSettings.css";
 
-import DoctorSidebar from "../../components/DoctorSidebar/DoctorSidebar";
+import DoctorSidebar from "../../../components/DoctorSidebar/DoctorSidebar";
 import BillTopBar from "../Doctor-billList/components/BillTopBar";
 
 import SettingsHUD from "./components/SettingsHUD";

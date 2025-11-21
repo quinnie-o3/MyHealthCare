@@ -1,5 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { login as loginAPI, logout as logoutAPI, getCurrentUser, isAuthenticated } from '../api/authAPI';
+import {
+  login as loginAPI,
+  logout as logoutAPI,
+  getCurrrentUser as getCurrentUser, // 👈 đổi ở đây
+  isAuthenticated,
+} from '../api/authAPI';
+
 
 const AuthContext = createContext();
 
@@ -8,7 +14,6 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [isAuth, setIsAuth] = useState(false);
 
-    //Load user từ localStorage khi app khởi động
     useEffect(() => {
         const loadUser = () => {
             try {
@@ -31,14 +36,13 @@ export const AuthProvider = ({ children }) => {
         };
         loadUser();
 
-        //Listen for strorage changes (khi logout ở tab khác)
         const handleStorageChange = (e) => {
-            if (e.key === "user" || e.key === "access_token"){
+            if (e.key === 'user' || e.key === 'access_token'){
                 loadUser();
             }
         };
-        window.addEventListener("storage", handleStorageChange);
-        return () => window.removeEventListener("storage", handleStorageChange);
+        window.addEventListener('storage', handleStorageChange);
+        return () => window.removeEventListener('storage', handleStorageChange);
     }, []);
 
     const login = async (credentials) => {
@@ -50,9 +54,9 @@ export const AuthProvider = ({ children }) => {
                 const userData = data.user || getCurrentUser();
                 setUser(userData);
                 setIsAuth(true);
-                return { success : true, user: userData };
+                return { success: true, user: userData };
             } 
-            throw new Error (data?.message || "Login failed");
+            throw new Error (data?.message || 'Login failed');
         } catch (error) {
             setUser(null);
             setIsAuth(false);
@@ -67,7 +71,7 @@ export const AuthProvider = ({ children }) => {
             setLoading(true);
             await logoutAPI();
         } catch (error) { 
-            console.error("Error logging out:", error);
+            console.error('Error logging out:', error);
         } finally {
             setUser(null);
             setIsAuth(false);

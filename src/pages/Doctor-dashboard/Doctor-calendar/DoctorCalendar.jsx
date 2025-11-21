@@ -2,7 +2,7 @@
 import React from "react";
 import "./DoctorCalendar.css";
 
-import DoctorSidebar from "../../components/DoctorSidebar/DoctorSidebar";
+import DoctorSidebar from "../../../components/DoctorSidebar/DoctorSidebar";
 import BillTopBar from "../Doctor-billList/components/BillTopBar";
 
 import CalendarSidebar from "./components/CalendarSidebar";
