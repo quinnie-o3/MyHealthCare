@@ -3,7 +3,7 @@ import React from "react";
 import "./DoctorInbox.css";
 import BillTopBar from "../Doctor-billList/components/BillTopBar";
 
-import DoctorSidebar from "../../components/DoctorSidebar/DoctorSidebar";
+import DoctorSidebar from "../../../components/DoctorSidebar/DoctorSidebar";
 import InboxList from "./components/InboxList";
 import InboxConversation from "./components/InboxConversation";
 import { useDoctorInbox } from "./hooks/useDoctorInbox";

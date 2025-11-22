@@ -1,8 +1,5 @@
 // src/pages/PatientDashboard/hooks/usePatientDashboard.js
 import { useState } from "react";
-import { useState, useEffect } from "react";
-import { getMyProfile } from "../../../api/patientAPI";
-import { useAuth } from "../../../context/AuthContext";
 
 export function usePatientDashboard() {
   const [activeTab, setActiveTab] = useState("appointments");

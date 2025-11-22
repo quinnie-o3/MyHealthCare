@@ -19,10 +19,10 @@ const DoctorDashboard = () => {
 
   return (
     <div className="doctor-layout">
-      {/* Left sidebar */}
-      <DoctorSidebar activeItem="dashboard" />
+      {/* Fixed sidebar on the left */}
+      <DoctorSidebar activeMenu="dashboard" />
 
-      {/* Main content */}
+      {/* Main content on the right */}
       <div className="dd-page">
         <DashboardHeader />
 
@@ -46,10 +46,10 @@ const DoctorDashboard = () => {
             <section className="dd-right">
               <DashboardCalendar calendar={calendar} />
               <DashboardUpcoming upcoming={upcoming} />
-              <DashboardTransactions
+              {/* <DashboardTransactions
                 transactions={transactions}
                 variant="mobile"
-              />
+              /> */}
             </section>
           </div>
         </main>

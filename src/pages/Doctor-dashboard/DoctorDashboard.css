@@ -1,9 +1,25 @@
+
+/* ROOT LAYOUT WITH SIDEBAR */
+.doctor-layout {
+  min-height: 100vh;
+  background: #c2f6ff; 
+}
+
+/* MAIN AREA (RIGHT SIDE) */
+
+.doctor-main {
+  flex:1;
+  display: flex;
+  flex-direction: column;
+}
+
 /* PAGE BACKGROUND */
 .dd-page {
   min-height: 100vh;
-  background: #c2f6ff; /* xanh nhạt giống hình */
+  background: #c2f6ff;
   display: flex;
   flex-direction: column;
+  margin-left: 240px;
 }
 
 /* HEADER */
@@ -21,10 +37,81 @@
 }
 
 .dd-header-right {
+  display: flex;
+  align-items: center;
+  gap:20px;
   color: #b0f4ff;
   font-size: 14px;
 }
 
+.dd-header-path {
+  opacity: 0.85;
+}
+
+.dd-header-account {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+    padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 118, 110, 0.6);
+  border: 1px solid rgba(240, 249, 255, 0.4);
+  text-decoration: none;
+  color: #ecfeff;
+}
+
+.dd-header-account:hover {
+  background: rgba(15, 118, 110, 0.8);
+}
+
+.dd-header-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: #0ea5e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+.dd-header-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dd-header-user-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.dd-header-user-name {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.dd-header-user-role {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.dd-header-name {
+  font-weight: 500;
+}
+
+.dd-header-logout {
+  border: 1px solid #b0f4ff;
+  border-radius: 999px;
+  background: transparent;
+  color: #b0f4ff;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
 /* MAIN LAYOUT */
 .dd-main {
   padding: 24px 16px 32px;

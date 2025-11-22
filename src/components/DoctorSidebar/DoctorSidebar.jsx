@@ -1,97 +1,146 @@
+// src/components/DoctorSidebar/DoctorSidebar.jsx
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./DoctorSidebar.css";
 import Logo from "../Logo/Logo";
+import { useAuth } from "../../context/AuthContext";
 
 export default function DoctorSidebar({ activeMenu, activeSub }) {
-  return (
-    <aside className="bill-sidebar">
-      <div className="bill-sidebar-logo">
-        <Logo />
-      </div>
+  const navigate = useNavigate();
+  const { logout } = useAuth();
 
-      <nav className="bill-sidebar-nav">
-        <button
-          className={
-            "nav-item" + (activeMenu === "dashboard" ? " nav-item--active" : "")
-          }
-        >
+  const getItemClass = (menuId) =>
+    "nav-item" + (activeMenu === menuId ? " nav-item--active" : "");
+
+  const getSubItemClass = (subId) =>
+    "nav-sub-item" + (activeSub === subId ? " nav-sub-item--active" : "");
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+
+  return (
+    <aside className="doctor-sidebar">
+      {/* Logo */}
+      {/* <div className="doctor-sidebar-logo">
+        <Logo />
+      </div> */}
+      <br />
+      <br />
+      <br />
+      {/* Main menu */}
+      <nav className="doctor-sidebar-nav">
+        {/* Dashboard */}
+        <Link to="/doctor/dashboard" className={getItemClass("dashboard")}>
           <span className="nav-icon">🏠</span>
           <span>Dashboard</span>
-        </button>
+        </Link>
 
-        <button
-          className={
-            "nav-item" +
-            (activeMenu === "transactions" ? " nav-item--active" : "")
-          }
+        {/* Transactions + submenu */}
+        <div>
+          {/* <Link
+            to="/doctor/bill-list"
+            className={getItemClass("transactions")}
+          >
+            <span className="nav-icon">💳</span>
+            <span>Transactions</span>
+          </Link> */}
+
+          {activeMenu === "transactions" && (
+            <div className="nav-sub">
+              <Link
+                to="/doctor/bill-list"
+                className={getSubItemClass("bill-list")}
+              >
+                Bill list
+              </Link>
+              <Link
+                to="/doctor/add-bill"
+                className={getSubItemClass("add-bill")}
+              >
+                Add bill
+              </Link>
+              <Link
+                to="/doctor/invoice"
+                className={getSubItemClass("invoice")}
+              >
+                Invoice
+              </Link>
+            </div>
+          )}
+        </div>
+
+        {/* Patients */}
+        <Link
+          to="/doctor/patients"
+          className={getItemClass("patients")}
         >
-          <span className="nav-icon">💳</span>
-          <span>Transactions</span>
-        </button>
-
-        {/* submenu Transactions */}
-        {activeMenu === "transactions" && (
-          <div className="nav-sub">
-            <button
-              className={
-                "nav-sub-item" +
-                (activeSub === "bill-list" ? " nav-sub-item--active" : "")
-              }
-            >
-              Bill list
-            </button>
-            <button
-              className={
-                "nav-sub-item" +
-                (activeSub === "add-bill" ? " nav-sub-item--active" : "")
-              }
-            >
-              Add Bill
-            </button>
-            <button
-              className={
-                "nav-sub-item" +
-                (activeSub === "invoice" ? " nav-sub-item--active" : "")
-              }
-            >
-              Invoice
-            </button>
-          </div>
-        )}
-
-        {/* các menu khác */}
-        <button className="nav-item">
           <span className="nav-icon">👥</span>
           <span>Patients</span>
-        </button>
-        <button className="nav-item">
+        </Link>
+
+        {/* Appointments */}
+        <Link
+          to="/doctor/appointments"
+          className={getItemClass("appointments")}
+        >
           <span className="nav-icon">📅</span>
           <span>Appointments</span>
-        </button>
-        <button className="nav-item">
+        </Link>
+
+        {/* Calendar */}
+        <Link
+          to="/doctor/calendar"
+          className={getItemClass("calendar")}
+        >
           <span className="nav-icon">📆</span>
           <span>Calendar</span>
-        </button>
-        <button className="nav-item">
+        </Link>
+
+        {/* Prescriptions */}
+        <Link
+          to="/doctor/prescriptions"
+          className={getItemClass("prescriptions")}
+        >
           <span className="nav-icon">💊</span>
           <span>Prescriptions</span>
-        </button>
-        <button className="nav-item">
+        </Link>
+
+        {/* Inbox / Messages */}
+        <Link
+          to="/doctor/inbox"
+          className={getItemClass("inbox")}
+        >
           <span className="nav-icon">💬</span>
           <span>Messages</span>
-        </button>
-        <button className="nav-item">
+        </Link>
+
+        {/* Reports */}
+        <Link
+          to="/doctor/reports"
+          className={getItemClass("reports")}
+        >
           <span className="nav-icon">📊</span>
           <span>Reports</span>
-        </button>
+        </Link>
       </nav>
 
-      <div className="bill-sidebar-bottom">
-        <button className="nav-item">
+      {/* Bottom section: settings + logout */}
+      <div className="doctor-sidebar-bottom">
+        <Link
+          to="/doctor/settings/profile"
+          className={getItemClass("settings")}
+        >
           <span className="nav-icon">⚙️</span>
           <span>Settings</span>
-        </button>
-        <button className="nav-item">
+        </Link>
+
+        <button type="button" className="nav-item" onClick={handleLogout}>
           <span className="nav-icon">🚪</span>
           <span>Logout</span>
         </button>
